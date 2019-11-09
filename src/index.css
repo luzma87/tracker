@@ -1,13 +1,77 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  monospace;
+}
+
+.root {
+  flex-grow: 1;
+}
+
+
+.title {
+  color: #333;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.title-text {
+  width: auto;
+}
+
+.title-icon {
+  --size: 70px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  box-sizing: border-box;
+  /*background: #D4D4D4;*/
+  margin-right: 20px;
+  padding: 14px;
+  text-align: center;
+  font-size: 30px;
+  /*color: rgb(104, 11, 121);*/
+  /*box-shadow: -2px -0px 3px rgb(104, 11, 121);*/
+}
+
+.singleColumn {
+  margin: 15px 0 !important;
+}
+
+.navbar-part {
+  display: flex;
+  align-items: center;
+}
+
+.email-table {
+  border: solid 1px #666 !important;
+  color: #333 !important;
+}
+
+table.email-table {
+  width: auto !important;
+  margin-top: 16px;
+}
+
+.email-table.header {
+  color: #666 !important;
+  font-weight: bold;
+  font-size: large;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.highlighter {
+  background: #C5CAE9;
 }
