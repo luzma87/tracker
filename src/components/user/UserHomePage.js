@@ -60,12 +60,14 @@ const UserHomePage = ({ firebase }) => {
   };
 
   const handleDayClick = (m, d) => {
-    const selectedMoment = moment(`${year}-${m}-${d}`, 'YYYY-M-D');
-    const hasEvents = user.events[year][m][d].events.length;
-    setSelectedDay(selectedMoment);
-    if (!hasEvents) {
-      setFormOpen(true);
-    }
+    // const selectedMoment = moment(`${year}-${m}-${d}`, 'YYYY-M-D');
+    const clickedDay = user.events[year][m][d];
+    // const hasEvents = clickedDay.events.length;
+    setSelectedDay(clickedDay);
+    // setSelectedDay(selectedMoment);
+    // if (!hasEvents) {
+    setFormOpen(true);
+    // }
   };
 
   const handleEventSelection = (selectedEventObj) => {
@@ -76,7 +78,8 @@ const UserHomePage = ({ firebase }) => {
     const newUser = { ...user };
     const newSelectedEvent = { ...selectedEvent };
     delete newSelectedEvent.id;
-    newUser.events[year][selectedDay.month() + 1][selectedDay.date()].events.push(newSelectedEvent);
+    const eventsList = newUser.events[year][selectedDay.date.month][selectedDay.date.day].events;
+    eventsList.push(newSelectedEvent);
     saveUser(firebase, newUser);
     handleFormClose();
   };

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import {
   Dialog,
   DialogActions,
@@ -25,37 +26,40 @@ const eventStyle = (event) => ({
 
 const EventForm = ({
   open, handleClose, day, events, selectedEvent, handleEventSelection, handleSave,
-}) => (
-  <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-    <DialogTitle id="form-dialog-title">
-      {day.format('dddd, MMMM Do YYYY')}
-    </DialogTitle>
-    <DialogContent>
-      <DialogContentText>
-         Choose an event for today
-      </DialogContentText>
-      <List>
-        {events.map((event) => (
-          <ListItem
-            key={event.id}
-            button
-            selected={selectedEvent && event.id === selectedEvent.id}
-            onClick={() => handleEventSelection(event)}
-          >
-            <div style={eventStyle(event)}>
-              {event.content}
-            </div>
-            <ListItemText primary={event.name} />
-          </ListItem>
-        ))}
-      </List>
-    </DialogContent>
-    <DialogActions>
-      <CustomButton onClick={handleClose} color="primary" label="Cancel" />
-      <CustomButton onClick={handleSave} color="primary" label="Save" />
-    </DialogActions>
-  </Dialog>
-);
+}) => {
+  const date = moment(`${day.date.day}-${day.date.month}-${day.date.year}`, 'D-M-YYYY');
+  return (
+    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <DialogTitle id="form-dialog-title">
+        {date.format('dddd, MMMM Do YYYY')}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+                    Choose an event for today
+        </DialogContentText>
+        <List>
+          {events.map((event) => (
+            <ListItem
+              key={event.id}
+              button
+              selected={selectedEvent && event.id === selectedEvent.id}
+              onClick={() => handleEventSelection(event)}
+            >
+              <div style={eventStyle(event)}>
+                {event.content}
+              </div>
+              <ListItemText primary={event.name} />
+            </ListItem>
+          ))}
+        </List>
+      </DialogContent>
+      <DialogActions>
+        <CustomButton onClick={handleClose} color="primary" label="Cancel" />
+        <CustomButton onClick={handleSave} color="primary" label="Save" />
+      </DialogActions>
+    </Dialog>
+  );
+};
 
 EventForm.propTypes = {
   open: PropTypes.bool,
