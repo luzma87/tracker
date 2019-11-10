@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -17,6 +18,7 @@ class Firebase {
     app.initializeApp(config);
 
     this.auth = app.auth();
+    this.db = app.firestore();
   }
 
   // *** Auth API ***
@@ -44,11 +46,37 @@ class Firebase {
   onAuthUserListener(next, fallback) {
     return this.auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        next(authUser);
+        this.user(authUser.uid)
+          .onSnapshot((snapshot) => {
+            const dbUser = snapshot.data();
+            if (dbUser) {
+              if (!dbUser.roles) {
+                dbUser.roles = {};
+              }
+              const mergedUser = {
+                uid: authUser.uid,
+                email: authUser.email,
+                ...dbUser,
+              };
+              next(mergedUser);
+            } else {
+              fallback();
+            }
+          });
       } else {
         fallback();
       }
     });
+  }
+
+
+  // *** user ***
+  user(uid) {
+    return this.db.collection('users').doc(uid);
+  }
+
+  users() {
+    return this.db.collection('users');
   }
 }
 

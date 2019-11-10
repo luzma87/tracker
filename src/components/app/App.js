@@ -11,7 +11,7 @@ import Navigation from '../navigation/Navigation';
 import PasswordForgetPage from '../passwordForget/PasswordForgetPage';
 import withAuthentication from '../session/withAuthentication';
 import SignInPage from '../signIn/SignInPage';
-import HomePage from '../home/HomePage';
+import UserHomePage from '../user/UserHomePage';
 
 const theme = createMuiTheme({
   palette: {
@@ -33,7 +33,7 @@ const App = () => (
   <BrowserRouter>
     <ThemeProvider theme={theme}>
       <Navigation />
-      <Route exact path={routes.HOME} component={HomePage} />
+      <Route exact path={routes.HOME} component={UserHomePage} />
       <Route path={routes.SIGN_IN} component={SignInPage} />
       <Route path={routes.PASSWORD_FORGET} component={PasswordForgetPage} />
       <Route path={routes.ACCOUNT} component={AccountPage} />
