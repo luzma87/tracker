@@ -69,7 +69,6 @@ class Firebase {
     });
   }
 
-
   // *** user ***
   user(uid) {
     return this.db.collection('users').doc(uid);
@@ -77,6 +76,15 @@ class Firebase {
 
   users() {
     return this.db.collection('users');
+  }
+
+  // *** event ***
+  event(id) {
+    return this.db.collection('events').doc(id);
+  }
+
+  events() {
+    return this.db.collection('events');
   }
 }
 

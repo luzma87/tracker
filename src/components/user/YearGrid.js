@@ -17,6 +17,7 @@ const dayStyle = {
   border: `solid 1px ${borderColor}`,
   height: size,
   fontSize: 10,
+  cursor: 'pointer',
 };
 
 const YearGrid = ({ months, year, handleClick }) => {
