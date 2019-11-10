@@ -46,10 +46,27 @@ const YearGrid = ({ months, year, handleClick }) => {
             border: 'solid 1px red',
           } : {};
           let eventStyle = {};
-          if (events.length > 0) {
-            eventStyle = {
-              background: events[0].color,
-            };
+          if (events.length === 1) {
+            eventStyle = { background: events[0].color };
+          }
+          if (events.length > 1) {
+            const percentage = 100 / events.length;
+            let stepCount = 0;
+            let background = ['conic-gradient('];
+            const bg = [];
+            events.forEach((event, i) => {
+              stepCount += percentage;
+              if (i === 0) {
+                bg.push(`${event.color} ${stepCount}%`);
+              } else if (i === events.length - 1) {
+                bg.push(`${event.color} 0`);
+              } else {
+                bg.push(`${event.color} 0 ${stepCount}%`);
+              }
+            });
+            background += bg.join(', ');
+            background += ')';
+            eventStyle = { background };
           }
           return (
             <div
