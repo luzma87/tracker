@@ -5,11 +5,11 @@ import CustomIcon from '../_common/CustomIcon';
 import customLink from './customLink';
 
 const NavBarIconButton = ({
-  title, icon, to, color, id, themed,
+  title, icon, to, color, id,
 }) => (
   <Tooltip title={title}>
     <IconButton component={customLink(to)} data-cy={`${id}-nav-button`}>
-      <CustomIcon icon={icon} style={{ color }} themed={themed} />
+      <CustomIcon icon={icon} style={{ color }} />
     </IconButton>
   </Tooltip>
 );
@@ -20,12 +20,10 @@ NavBarIconButton.propTypes = {
   to: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   color: PropTypes.string,
-  themed: PropTypes.bool,
 };
 
 NavBarIconButton.defaultProps = {
   color: 'white',
-  themed: false,
 };
 
 export default NavBarIconButton;

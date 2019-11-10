@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Box, Button, Grid, Typography,
 } from '@material-ui/core';
@@ -8,6 +7,7 @@ import React, { useState } from 'react';
 import CustomError from '../_common/CustomError';
 import CustomTextField from '../_common/CustomTextField';
 import withFirebase from '../firebase/withFirebase';
+import CustomIcon from '../_common/CustomIcon';
 
 const INITIAL_STATE = {
   passwordOne: '',
@@ -89,7 +89,7 @@ const PasswordChangeForm = ({ firebase, user }) => {
               onClick={(event) => onSubmit(event)}
             >
             Cambiar
-              <FontAwesomeIcon icon={['far', icon]} pulse={isLoading} style={{ marginLeft: 16 }} />
+              <CustomIcon icon={icon} pulse={isLoading} style={{ marginLeft: 16 }} />
             </Button>
           </Grid>
         </Grid>

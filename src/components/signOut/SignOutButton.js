@@ -1,8 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconButton, Tooltip } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import withFirebase from '../firebase/withFirebase';
+import CustomIcon from '../_common/CustomIcon';
 
 
 const SignOutButton = ({ firebase }) => (
@@ -13,7 +13,7 @@ const SignOutButton = ({ firebase }) => (
       color="inherit"
       onClick={() => firebase.doSignOut()}
     >
-      <FontAwesomeIcon icon={['far', 'sign-out-alt']} color="white" />
+      <CustomIcon icon="sign-out-alt" color="white" />
     </IconButton>
   </Tooltip>
 );

@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
+import CustomIcon from './CustomIcon';
 
 const CustomLoader = ({ isLoading }) => {
   if (!isLoading) {
@@ -9,11 +9,7 @@ const CustomLoader = ({ isLoading }) => {
   }
   return (
     <Typography color="secondary">
-      <FontAwesomeIcon
-        icon={['far', 'spinner']}
-        pulse
-        size="4x"
-      />
+      <CustomIcon icon="spinner" pulse size="4x" />
     </Typography>
   );
 };

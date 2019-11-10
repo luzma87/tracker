@@ -1,12 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  Box, Button, Typography,
-} from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import CustomError from '../_common/CustomError';
 import withFirebase from '../firebase/withFirebase';
 import CustomTextField from '../_common/CustomTextField';
+import CustomIcon from '../_common/CustomIcon';
 
 const INITIAL_STATE = {
   email: '',
@@ -63,7 +61,7 @@ const PasswordForgetFormBase = ({ firebase }) => {
         onClick={(event) => onSubmit(event)}
       >
         Recuperar
-        <FontAwesomeIcon icon={['far', icon]} pulse={isLoading} style={{ marginLeft: 16 }} />
+        <CustomIcon icon={icon} pulse={isLoading} style={{ marginLeft: 16 }} />
       </Button>
       <CustomError error={error} />
       {!error && isDone ? (

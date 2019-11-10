@@ -1,10 +1,10 @@
 import { Grid, Paper, Typography } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PasswordForgetLink from '../passwordForget/PasswordForgetLink';
 import SignInForm from './SignInForm';
 import withFirebase from '../firebase/withFirebase';
+import CustomIcon from '../_common/CustomIcon';
 
 const SignInPage = ({ firebase }) => {
   useEffect(() => {
@@ -20,7 +20,7 @@ const SignInPage = ({ firebase }) => {
           }}
         >
           <Typography gutterBottom color="primary" variant="h4">
-            <FontAwesomeIcon icon={['far', 'calendar-star']} style={{ marginRight: 8 }} />
+            <CustomIcon icon="calendar-star" style={{ marginRight: 8 }} />
             Tracker
           </Typography>
           <SignInForm />

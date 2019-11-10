@@ -1,13 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 import CustomButton from '../_common/CustomButton';
+import CustomIcon from '../_common/CustomIcon';
 
 const NavBarHybridButton = ({
   title, icon, to, color,
 }) => (
   <CustomButton color={color} to={to}>
-    <FontAwesomeIcon icon={['far', icon]} style={{ marginRight: 8 }} />
+    <CustomIcon icon={icon} style={{ marginRight: 8 }} />
     {title}
   </CustomButton>
 );

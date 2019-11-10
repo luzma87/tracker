@@ -18,12 +18,10 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
-    'chai-friendly'
+    'react'
   ],
   rules: {
     "react/jsx-filename-extension": ["off"],
-    "react/forbid-prop-types": ["off"],
-    "no-unused-expressions": 0
+    "react/forbid-prop-types": ["off"]
   },
 };

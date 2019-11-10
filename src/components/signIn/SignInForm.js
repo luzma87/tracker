@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -8,6 +7,7 @@ import routes from '../../constants/routes';
 import CustomError from '../_common/CustomError';
 import CustomTextField from '../_common/CustomTextField';
 import withFirebase from '../firebase/withFirebase';
+import CustomIcon from '../_common/CustomIcon';
 
 const INITIAL_STATE = {
   email: '',
@@ -81,7 +81,7 @@ const SignInFormBase = ({ firebase, history }) => {
         disabled={isInvalid || isLoading}
         onClick={(event) => onSubmit(event)}
       >
-        <FontAwesomeIcon icon={['far', icon]} pulse={isLoading} style={{ marginRight: 16 }} />
+        <CustomIcon icon={icon} pulse={isLoading} style={{ marginRight: 16 }} />
         Entrar
       </Button>
       <CustomError error={error} />

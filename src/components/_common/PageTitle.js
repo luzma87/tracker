@@ -1,8 +1,8 @@
 import { Typography } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withTheme } from '@material-ui/styles';
+import CustomIcon from './CustomIcon';
 
 const PageTitle = ({ label, icon, theme }) => (
   <>
@@ -14,7 +14,7 @@ const PageTitle = ({ label, icon, theme }) => (
         boxShadow: `-2px -0px 3px ${theme.palette.primary.dark}`,
       }}
     >
-      <FontAwesomeIcon icon={['far', icon]} style={{ marginLeft: 2 }} />
+      <CustomIcon icon={icon} style={{ marginLeft: 2 }} />
     </div>
     <Typography variant="h4" className="title-text" color="primary">
       {label}

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { withTheme } from '@material-ui/styles';
 
 const CustomIcon = ({
-  icon, theme, themed, ...rest
+  icon, ...rest
 }) => {
-  const getIcon = () => (themed ? ['far', theme.icons[icon]] : ['far', icon]);
+  const getIcon = () => ['far', icon];
   return (
     <FontAwesomeIcon icon={getIcon(icon)} {...rest} />
   );
@@ -15,12 +15,6 @@ const CustomIcon = ({
 
 CustomIcon.propTypes = {
   icon: PropTypes.string.isRequired,
-  theme: PropTypes.any.isRequired,
-  themed: PropTypes.bool,
-};
-
-CustomIcon.defaultProps = {
-  themed: false,
 };
 
 export default withTheme(CustomIcon);
