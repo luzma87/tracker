@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { compose } from 'recompose';
@@ -15,26 +15,12 @@ const UserHomePage = ({ firebase }) => {
   const id = 'qwO8vGhNnzL76lJs4ZQToma92Oo1';
   const { isLoading, user } = usersHooks.useUser(firebase, id);
   const { events } = eventsHooks.useEvents(firebase);
-  const [date] = useState(moment());
+  const [year] = useState(moment().year());
   const [isFormOpen, setFormOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [eventsForSelect, setEventsForSelect] = useState([]);
-
-  useEffect(() => {
-    if (events.length > 0) {
-      const ev = [];
-      events.forEach((e) => {
-        ev.push({ value: e.id, label: e.name });
-      });
-      setEventsForSelect(ev);
-      setSelectedEvent(ev[0].value);
-      console.log(events);
-    }
-  }, [events]);
 
   let userYear = null;
-  const year = date.year();
 
   if (user && !isLoading) {
     userYear = user[year];
@@ -44,7 +30,7 @@ const UserHomePage = ({ firebase }) => {
         const daysNum = moment(`${year}-${month}`, 'YYYY-M').daysInMonth();
         thisYear[month] = {};
         for (let day = 1; day <= daysNum; day += 1) {
-          thisYear[month][day] = {};
+          thisYear[month][day] = [];
         }
       }
       const newUser = { ...user };
@@ -63,6 +49,7 @@ const UserHomePage = ({ firebase }) => {
   const handleFormClose = () => {
     setFormOpen(false);
     setSelectedDay(null);
+    setSelectedEvent(null);
   };
 
   const handleDayClick = (m, d) => {
@@ -71,8 +58,24 @@ const UserHomePage = ({ firebase }) => {
     setSelectedDay(selectedMoment);
   };
 
-  const handleEventSelection = (event) => {
-    setSelectedEvent(event.target.value);
+  const handleEventSelection = (selectedEventObj) => {
+    setSelectedEvent(selectedEventObj);
+  };
+
+  const handleSave = () => {
+    const newUser = { ...user };
+    const newSelectedEvent = { ...selectedEvent };
+    delete newSelectedEvent.id;
+    newUser[year][selectedDay.month() + 1][selectedDay.date()].push(newSelectedEvent);
+    firebase.user(id)
+      .set(newUser)
+      .then(() => {
+        console.log('doc written with id');
+        handleFormClose();
+      })
+      .catch((error) => {
+        console.log('error adding doc: ', error);
+      });
   };
 
   return (
@@ -81,8 +84,9 @@ const UserHomePage = ({ firebase }) => {
         <EventForm
           open={isFormOpen}
           handleClose={() => handleFormClose()}
+          handleSave={() => handleSave()}
           day={selectedDay}
-          events={eventsForSelect}
+          events={events}
           selectedEvent={selectedEvent}
           handleEventSelection={(event) => handleEventSelection(event)}
         />

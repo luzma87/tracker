@@ -8,9 +8,14 @@ const useEvents = (firebase) => {
     setLoading(true);
     const firebaseRef = (firebase.events()
       .onSnapshot((querySnapshot) => {
-        const loadedEvents = [];
+        let loadedEvents = [];
         querySnapshot.forEach((doc) => {
           loadedEvents.push(doc.data());
+        });
+        loadedEvents = loadedEvents.sort((a, b) => {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
         });
         setEvents(loadedEvents);
       }));

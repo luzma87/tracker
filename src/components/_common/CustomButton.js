@@ -4,15 +4,14 @@ import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import customLink from '../navigation/customLink';
 
-const CustomButton = forwardRef(({ to, children, ...rest }, ref) => (
-  <Button component={customLink(to)} {...rest}>
-    {children}
+const CustomButton = forwardRef(({ label, ...rest }, ref) => (
+  <Button {...rest}>
+    {label}
   </Button>
 ));
 
 CustomButton.propTypes = {
-  to: PropTypes.string.isRequired,
-  children: PropTypes.any.isRequired,
+  label: PropTypes.any.isRequired,
 };
 
 export default CustomButton;

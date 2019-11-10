@@ -1,35 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import CustomSelect from '../_common/CustomSelect';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  List,
+  ListItem,
+  ListItemText,
+} from '@material-ui/core';
+import CustomButton from '../_common/CustomButton';
+
+const eventStyle = (event) => ({
+  background: event.color,
+  width: 32,
+  height: 32,
+  padding: 4,
+  marginRight: 8,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
 
 const EventForm = ({
-  open, handleClose, day, events, selectedEvent, handleEventSelection,
+  open, handleClose, day, events, selectedEvent, handleEventSelection, handleSave,
 }) => (
   <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
     <DialogTitle id="form-dialog-title">
       {day.format('dddd, MMMM Do YYYY')}
     </DialogTitle>
     <DialogContent>
-      <CustomSelect
-        id="events"
-        value={selectedEvent}
-        label="Event"
-        values={events}
-        onChange={handleEventSelection}
-      />
+      <DialogContentText>
+         Choose an event for today
+      </DialogContentText>
+      <List>
+        {events.map((event) => (
+          <ListItem
+            key={event.id}
+            button
+            selected={selectedEvent && event.id === selectedEvent.id}
+            onClick={() => handleEventSelection(event)}
+          >
+            <div style={eventStyle(event)}>
+              {event.content}
+            </div>
+            <ListItemText primary={event.name} />
+          </ListItem>
+        ))}
+      </List>
     </DialogContent>
     <DialogActions>
-      <Button onClick={handleClose} color="primary">
-                    Cancel
-      </Button>
-      <Button onClick={handleClose} color="primary">
-                    Save
-      </Button>
+      <CustomButton onClick={handleClose} color="primary" label="Cancel" />
+      <CustomButton onClick={handleSave} color="primary" label="Save" />
     </DialogActions>
   </Dialog>
 );
@@ -39,8 +62,9 @@ EventForm.propTypes = {
   handleClose: PropTypes.func,
   day: PropTypes.any,
   events: PropTypes.any,
-  selectedEvent: PropTypes.string,
+  selectedEvent: PropTypes.shape({}),
   handleEventSelection: PropTypes.func,
+  handleSave: PropTypes.func,
 };
 
 EventForm.defaultProps = {
@@ -50,6 +74,7 @@ EventForm.defaultProps = {
   events: [],
   selectedEvent: null,
   handleEventSelection: () => {},
+  handleSave: () => {},
 };
 
 export default EventForm;
