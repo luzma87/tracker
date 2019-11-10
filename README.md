@@ -1,6 +1,10 @@
-React-firebase tutorial (1st part) from [https://www.robinwieruch.de](https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial)
+https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial
 
-React-firebase tutorial (2nd part) from [https://www.robinwieruch.de](https://www.robinwieruch.de/react-firebase-realtime-database)
+https://www.robinwieruch.de/react-firebase-realtime-database
+
+https://dev.to/bmcmahen/using-firebase-with-react-hooks-21ap
+
+https://www.robinwieruch.de/react-firestore-tutorial
 
 ------------------------------
 
