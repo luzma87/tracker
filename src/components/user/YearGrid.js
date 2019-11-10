@@ -1,4 +1,6 @@
-/* eslint-disable react/no-array-index-key,jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/no-array-index-key,
+jsx-a11y/click-events-have-key-events,
+jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
@@ -35,9 +37,10 @@ const YearGrid = ({ months, year, handleClick }) => {
             {monthName.format('MMM')}
           </Typography>
         </div>
-        {Object.entries(days).map(([day, events]) => {
+        {Object.entries(days).map(([dayNumber, day]) => {
+          const { events } = day;
           const isToday = parseInt(month, 10) === today.month() + 1
-              && parseInt(day, 10) === today.date();
+              && parseInt(dayNumber, 10) === today.date();
           const selectedStyle = isToday ? {
             background: 'pink',
             border: 'solid 1px red',
@@ -50,9 +53,9 @@ const YearGrid = ({ months, year, handleClick }) => {
           }
           return (
             <div
-              key={`${month}_${day}`}
+              key={`${month}_${dayNumber}`}
               style={{ ...dayStyle, ...selectedStyle, ...eventStyle }}
-              onClick={() => handleClick(parseInt(month, 10), parseInt(day, 10))}
+              onClick={() => handleClick(parseInt(month, 10), parseInt(dayNumber, 10))}
             >
               {events.length > 0 ? events[0].content : ''}
             </div>
