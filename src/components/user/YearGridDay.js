@@ -21,17 +21,13 @@ const getDayBackground = (events) => {
 };
 
 const YearGridDay = ({
-  day, month, isToday, dayStyle, dayNumber, handleClick,
+  day, month, isToday, dayNumber, handleClick,
 }) => {
   const { events } = day;
-  const selectedStyle = isToday ? {
-    background: 'pink',
-    border: 'solid 1px red',
-  } : {};
-  const eventStyle = getDayBackground(events);
   return (
     <div
-      style={{ ...dayStyle, ...selectedStyle, ...eventStyle }}
+      className={`grid-day ${isToday ? 'grid-today' : ''}`}
+      style={getDayBackground(events)}
       onClick={() => handleClick(parseInt(month, 10), parseInt(dayNumber, 10))}
     >
       {events.length > 0 ? events[0].content : ''}
@@ -43,7 +39,6 @@ YearGridDay.propTypes = {
   day: PropTypes.any.isRequired,
   month: PropTypes.any.isRequired,
   isToday: PropTypes.any.isRequired,
-  dayStyle: PropTypes.any.isRequired,
   dayNumber: PropTypes.any.isRequired,
   handleClick: PropTypes.any.isRequired,
 };

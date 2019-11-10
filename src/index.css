@@ -1,77 +1,88 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-  monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+    --cell-size: 28px;
+    --cell-border-color: #999;
 }
 
 .root {
-  flex-grow: 1;
+    flex-grow: 1;
 }
-
 
 .title {
-  color: #333;
-  display: flex;
-  align-items: center;
-  position: relative;
+    color: #333;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
+
 .title-text {
-  width: auto;
+    width: auto;
 }
 
 .title-icon {
-  --size: 70px;
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  box-sizing: border-box;
-  /*background: #D4D4D4;*/
-  margin-right: 20px;
-  padding: 14px;
-  text-align: center;
-  font-size: 30px;
-  /*color: rgb(104, 11, 121);*/
-  /*box-shadow: -2px -0px 3px rgb(104, 11, 121);*/
-}
-
-.singleColumn {
-  margin: 15px 0 !important;
+    --size: 70px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin-right: 20px;
+    padding: 14px;
+    text-align: center;
+    font-size: 30px;
 }
 
 .navbar-part {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
-.email-table {
-  border: solid 1px #666 !important;
-  color: #333 !important;
+.grid-month {
+    width: var(--cell-size);
 }
 
-table.email-table {
-  width: auto !important;
-  margin-top: 16px;
+.grid-title {
+    border: solid 1px var(--cell-border-color);
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
 }
 
-.email-table.header {
-  color: #666 !important;
-  font-weight: bold;
-  font-size: large;
+.grid-day {
+    box-sizing: border-box;
+    border: solid 1px var(--cell-border-color);
+    height: var(--cell-size);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.link {
-  color: inherit;
-  text-decoration: none;
+.grid-today {
+    border-width: 2px;
+    animation: pulsate 2.5s linear infinite;
 }
 
-.highlighter {
-  background: #C5CAE9;
+@keyframes pulsate {
+  0%, 33% {
+    transform: scale(1);
+  }
+    33%, 66% {
+        transform: scale(1.3);
+    }
+    66%, 100% {
+        transform: scale(1);
+    }
 }

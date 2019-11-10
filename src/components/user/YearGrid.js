@@ -3,26 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import moment from 'moment';
-import { Typography } from '@material-ui/core';
 import YearGridDay from './YearGridDay';
-
-const size = 32;
-const borderColor = '#999';
-
-const monthStyle = {
-  width: size,
-};
-const titleStyle = {
-  border: `solid 1px ${borderColor}`,
-};
-const dayStyle = {
-  border: `solid 1px ${borderColor}`,
-  height: size,
-  cursor: 'pointer',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
 
 const YearGrid = ({ months, year, handleClick }) => {
   const [today] = useState(moment());
@@ -30,11 +11,9 @@ const YearGrid = ({ months, year, handleClick }) => {
   const yearElement = Object.entries(months).map(([month, days]) => {
     const monthName = moment(`${year}-${month}`, 'YYYY-M');
     return (
-      <div key={month} style={monthStyle}>
-        <div style={titleStyle}>
-          <Typography variant="subtitle2" align="center">
-            {monthName.format('MMM')}
-          </Typography>
+      <div key={month} className="grid-month">
+        <div className="grid-title">
+          {monthName.format('MMM')}
         </div>
         {Object.entries(days).map(([dayNumber, day]) => {
           const isToday = parseInt(month, 10) === today.month() + 1
@@ -44,7 +23,6 @@ const YearGrid = ({ months, year, handleClick }) => {
               key={`${month}_${dayNumber}`}
               day={day}
               dayNumber={dayNumber}
-              dayStyle={dayStyle}
               handleClick={handleClick}
               isToday={isToday}
               month={month}
@@ -56,10 +34,10 @@ const YearGrid = ({ months, year, handleClick }) => {
   });
   return (
     <Grid item xs={12} container>
-      <div style={monthStyle}>
-        <div style={titleStyle}>&nbsp;</div>
+      <div className="grid-month">
+        <div className="grid-title">&nbsp;</div>
         {Array.from({ length: 31 }).map((x, i) => (
-          <div key={i + 1} style={dayStyle}>
+          <div key={i + 1} className="grid-title grid-day">
             {i + 1}
           </div>
         ))}
