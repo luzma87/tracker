@@ -1,11 +1,10 @@
-/* eslint-disable react/no-array-index-key,
-jsx-a11y/click-events-have-key-events,
-jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import moment from 'moment';
 import { Typography } from '@material-ui/core';
+import YearGridDay from './YearGridDay';
 
 const size = 32;
 const borderColor = '#999';
@@ -38,44 +37,18 @@ const YearGrid = ({ months, year, handleClick }) => {
           </Typography>
         </div>
         {Object.entries(days).map(([dayNumber, day]) => {
-          const { events } = day;
           const isToday = parseInt(month, 10) === today.month() + 1
               && parseInt(dayNumber, 10) === today.date();
-          const selectedStyle = isToday ? {
-            background: 'pink',
-            border: 'solid 1px red',
-          } : {};
-          let eventStyle = {};
-          if (events.length === 1) {
-            eventStyle = { background: events[0].color };
-          }
-          if (events.length > 1) {
-            const percentage = 100 / events.length;
-            let stepCount = 0;
-            let background = ['conic-gradient('];
-            const bg = [];
-            events.forEach((event, i) => {
-              stepCount += percentage;
-              if (i === 0) {
-                bg.push(`${event.color} ${stepCount}%`);
-              } else if (i === events.length - 1) {
-                bg.push(`${event.color} 0`);
-              } else {
-                bg.push(`${event.color} 0 ${stepCount}%`);
-              }
-            });
-            background += bg.join(', ');
-            background += ')';
-            eventStyle = { background };
-          }
           return (
-            <div
+            <YearGridDay
               key={`${month}_${dayNumber}`}
-              style={{ ...dayStyle, ...selectedStyle, ...eventStyle }}
-              onClick={() => handleClick(parseInt(month, 10), parseInt(dayNumber, 10))}
-            >
-              {events.length > 0 ? events[0].content : ''}
-            </div>
+              day={day}
+              dayNumber={dayNumber}
+              dayStyle={dayStyle}
+              handleClick={handleClick}
+              isToday={isToday}
+              month={month}
+            />
           );
         })}
       </div>
