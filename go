@@ -96,6 +96,16 @@ function task_deploy {
   firebase deploy
 }
 
+function task_redeploy {
+  prev_deploy="$(cat deploys)"
+
+  echo "${deploy_fg}Preparing redeploy #${prev_deploy} to firebase ${normal_fg}"
+  task_build
+
+  echo "${deploy_fg}Deploying to firebase${normal_fg}"
+  firebase deploy
+}
+
 function task_clear_port {
   local port=$(lsof -ti :3000)
   echo "${misc_fg}Finding and killing process running in port 3000 [${port}]${normal_fg}"
