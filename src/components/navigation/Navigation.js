@@ -13,6 +13,8 @@ const NavigationAuth = () => (
     <Toolbar style={{ justifyContent: 'space-between' }}>
       <div className="navbar-part">
         <NavBarTextLink to={routes.HOME} text="Tracker" />
+        <NavBarIconButton id="tracker" title="Tracker" icon="calendar-star" to={routes.HOME} />
+        <NavBarIconButton id="events" title="Events" icon="calendar-day" to={routes.EVENTS} />
       </div>
 
       <div className="navbar-part">

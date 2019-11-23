@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import moment from 'moment';
 import YearGridDay from './YearGridDay';
 
-const YearGrid = ({ months, year, handleClick }) => {
+const YearGrid = ({ months, year, onClick }) => {
   const [today] = useState(moment());
   if (!months) return null;
   const yearElement = Object.entries(months).map(([month, days]) => {
@@ -23,7 +23,7 @@ const YearGrid = ({ months, year, handleClick }) => {
               key={`${month}_${dayNumber}`}
               day={day}
               dayNumber={dayNumber}
-              handleClick={handleClick}
+              onClick={onClick}
               isToday={isToday}
               month={month}
             />
@@ -50,13 +50,13 @@ const YearGrid = ({ months, year, handleClick }) => {
 YearGrid.propTypes = {
   months: PropTypes.any,
   year: PropTypes.number,
-  handleClick: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 YearGrid.defaultProps = {
   months: null,
   year: 0,
-  handleClick: () => {},
+  onClick: () => {},
 };
 
 export default YearGrid;

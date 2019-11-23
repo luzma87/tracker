@@ -8,7 +8,7 @@ import withFirebase from '../firebase/withFirebase';
 import withAuthorization from '../session/withAuthorization';
 import Content from '../_common/Content';
 import YearGrid from './YearGrid';
-import DayEventsForm from './DayEventsForm';
+import DayEventsForm from '../events/DayEventsForm';
 import usersHooks from '../../hooks/usersHooks';
 import eventsHooks from '../../hooks/eventsHooks';
 
@@ -87,9 +87,9 @@ const UserHomePage = ({ firebase }) => {
       {selectedDay ? (
         <DayEventsForm
           open={isFormOpen}
-          handleClose={() => handleFormClose()}
-          handleSave={(eventToSave) => handleSave(eventToSave)}
-          handleDelete={(idDelete) => handleDelete(idDelete)}
+          onClose={() => handleFormClose()}
+          onSave={(eventToSave) => handleSave(eventToSave)}
+          onDelete={(idDelete) => handleDelete(idDelete)}
           day={selectedDay}
           events={events}
         />
@@ -97,7 +97,7 @@ const UserHomePage = ({ firebase }) => {
       <YearGrid
         months={userYear}
         year={year}
-        handleClick={(month, day) => handleDayClick(month, day)}
+        onClick={(month, day) => handleDayClick(month, day)}
       />
     </Content>
   );

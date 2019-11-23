@@ -5,13 +5,10 @@ import React from 'react';
 
 const CustomTextField = (props) => {
   const { margin, id, ...other } = props;
-  const style = margin ? { marginTop: 16 } : {};
+  const style = margin ? { marginBottom: 16 } : {};
   return (
     <TextField
       {...other}
-      inputProps={{
-        'data-cy': id,
-      }}
       name={id}
       variant="outlined"
       style={style}

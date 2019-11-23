@@ -1,16 +1,20 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faCalendarDay,
+  faCalendarEdit,
+  faCalendarPlus,
   faCalendarStar,
+  faCalendarTimes,
   faGhost,
   faRepeat,
   faSave,
   faSignInAlt,
   faSignOutAlt,
   faSpinner,
+  faTrashAlt,
   faUndo,
   faUnlockAlt,
   faUser,
-  faTrashAlt,
 } from '@fortawesome/pro-regular-svg-icons';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -22,7 +26,9 @@ import * as serviceWorker from './serviceWorker';
 
 library.add(
   faSignInAlt, faSignOutAlt, faSave, faSpinner, faGhost, faRepeat,
-  faUndo, faUnlockAlt, faUser, faCalendarStar, faTrashAlt,
+  faUndo, faUnlockAlt, faUser, faTrashAlt,
+  faCalendarStar, faCalendarDay, faCalendarTimes, faCalendarPlus, faCalendarEdit,
+
 );
 
 ReactDOM.render(
