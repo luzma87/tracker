@@ -10,6 +10,7 @@ import {
   faUndo,
   faUnlockAlt,
   faUser,
+  faTrashAlt,
 } from '@fortawesome/pro-regular-svg-icons';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -21,7 +22,7 @@ import * as serviceWorker from './serviceWorker';
 
 library.add(
   faSignInAlt, faSignOutAlt, faSave, faSpinner, faGhost, faRepeat,
-  faUndo, faUnlockAlt, faUser, faCalendarStar,
+  faUndo, faUnlockAlt, faUser, faCalendarStar, faTrashAlt,
 );
 
 ReactDOM.render(
