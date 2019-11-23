@@ -17,9 +17,14 @@ const initialState = {
   content: '',
 };
 
-const createEvent = (firebase, newEvent) => firebase.events().add(newEvent);
+const createEvent = (firebase, event) => {
+  const newEvent = { ...event };
+  const newEventRef = firebase.events().doc();
+  newEvent.id = newEventRef.id;
+  return newEventRef.set(newEvent);
+};
 
-const updateEvent = (firebase, newEvent) => firebase.event(newEvent.id).set(newEvent);
+const updateEvent = (firebase, event) => firebase.event(event.id).set(event);
 
 const saveEvent = (firebase, newEvent) => {
   let promise;

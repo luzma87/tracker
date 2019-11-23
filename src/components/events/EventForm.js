@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Button, Card, CardActions, CardContent,
 } from '@material-ui/core';
+import { SliderPicker } from 'react-color';
 import CustomTextField from '../_common/CustomTextField';
 import CustomIcon from '../_common/CustomIcon';
 
@@ -22,12 +23,20 @@ const EventForm = ({
           label="Name"
           onChange={(event) => onDataChange(event)}
         />
-        <CustomTextField
-          value={selectedEvent.color}
-          id="color"
-          label="Color"
-          onChange={(event) => onDataChange(event)}
-        />
+        <div style={{ marginBottom: 24 }}>
+          <SliderPicker
+            color={selectedEvent.color}
+            onChangeComplete={(color) => {
+              const newEvent = {
+                target: {
+                  name: 'color',
+                  value: color.hex,
+                },
+              };
+              onDataChange(newEvent);
+            }}
+          />
+        </div>
         <CustomTextField
           value={selectedEvent.content}
           id="content"
