@@ -25,8 +25,8 @@ const saveUser = (firebase, newUser) => {
     });
 };
 
-const UserHomePage = ({ firebase }) => {
-  const id = 'qwO8vGhNnzL76lJs4ZQToma92Oo1';
+const UserHomePage = ({ firebase, authUser }) => {
+  const id = authUser.uid;
   const { isLoading, user } = usersHooks.useUser(firebase, id);
   const { events } = eventsHooks.useEvents(firebase);
   const [year] = useState(moment().year());
@@ -117,6 +117,7 @@ const UserHomePage = ({ firebase }) => {
 
 UserHomePage.propTypes = {
   firebase: PropTypes.any.isRequired,
+  authUser: PropTypes.any.isRequired,
 };
 
 UserHomePage.defaultProps = {};
