@@ -8,7 +8,7 @@ import withFirebase from '../firebase/withFirebase';
 import withAuthorization from '../session/withAuthorization';
 import Content from '../_common/Content';
 import YearGrid from './YearGrid';
-import EventForm from './EventForm';
+import DayEventsForm from './DayEventsForm';
 import usersHooks from '../../hooks/usersHooks';
 import eventsHooks from '../../hooks/eventsHooks';
 
@@ -49,7 +49,7 @@ const UserHomePage = ({ firebase }) => {
           };
         }
       }
-      const newUser = { ...user };
+      const newUser = cloneDeep(user);
       newUser.events[year] = thisYear;
       saveUser(firebase, newUser);
     }
@@ -85,7 +85,7 @@ const UserHomePage = ({ firebase }) => {
   return (
     <Content>
       {selectedDay ? (
-        <EventForm
+        <DayEventsForm
           open={isFormOpen}
           handleClose={() => handleFormClose()}
           handleSave={(eventToSave) => handleSave(eventToSave)}

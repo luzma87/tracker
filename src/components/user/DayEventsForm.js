@@ -29,7 +29,7 @@ const eventStyle = (event, size = 32) => ({
   alignItems: 'center',
 });
 
-const EventForm = ({
+const DayEventsForm = ({
   open, handleClose, day, events, handleSave, handleDelete,
 }) => {
   const date = moment(`${day.date.day}-${day.date.month}-${day.date.year}`, 'D-M-YYYY');
@@ -84,7 +84,7 @@ const EventForm = ({
   );
 };
 
-EventForm.propTypes = {
+DayEventsForm.propTypes = {
   open: PropTypes.bool,
   handleClose: PropTypes.func,
   day: PropTypes.any,
@@ -93,7 +93,7 @@ EventForm.propTypes = {
   handleDelete: PropTypes.func,
 };
 
-EventForm.defaultProps = {
+DayEventsForm.defaultProps = {
   open: true,
   handleClose: () => {},
   day: null,
@@ -102,4 +102,4 @@ EventForm.defaultProps = {
   handleDelete: () => {},
 };
 
-export default EventForm;
+export default DayEventsForm;
