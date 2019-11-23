@@ -26,17 +26,17 @@ const getDeleteButton = (id, event, onDelete) => {
   );
 };
 
-const getEditButton = (id, event, onEdit) => {
+const getEditButton = (id, event, onEdit, editIcon) => {
   if (!onEdit) return null;
   return (
     <IconButton size="small" color="primary" onClick={() => onEdit(id, event)}>
-      <CustomIcon icon="calendar-edit" />
+      <CustomIcon icon={editIcon} />
     </IconButton>
   );
 };
 
 const EventsList = ({
-  events, selectedEvent, onClick, onEdit, onDelete,
+  events, selectedEvent, onClick, onEdit, onDelete, editIcon,
 }) => {
   const listItemParams = {};
   return (
@@ -55,7 +55,7 @@ const EventsList = ({
           <ListItem key={`${event.name}_${i}`} {...listItemParams}>
             <div style={eventStyle(event, iconSize)}>{event.content}</div>
             <ListItemText primary={event.name} style={{ marginRight: 8 }} />
-            {getEditButton(i, event, onEdit)}
+            {getEditButton(i, event, onEdit, editIcon)}
             {getDeleteButton(i, event, onDelete)}
           </ListItem>
         );
@@ -70,6 +70,7 @@ EventsList.propTypes = {
   onClick: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
+  editIcon: PropTypes.string,
 };
 
 EventsList.defaultProps = {
@@ -77,6 +78,7 @@ EventsList.defaultProps = {
   onClick: null,
   onEdit: null,
   onDelete: null,
+  editIcon: 'calendar-edit',
 };
 
 export default EventsList;

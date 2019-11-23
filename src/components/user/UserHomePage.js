@@ -82,14 +82,26 @@ const UserHomePage = ({ firebase }) => {
     handleFormClose();
   };
 
+  const handleMoveTop = (idMove) => {
+    const newUser = cloneDeep(user);
+    const { date } = selectedDay;
+    const eventsList = getEventsList(newUser, date);
+    const ev = eventsList.splice(idMove, 1);
+    eventsList.unshift(ev[0]);
+    newUser.events[date.year][date.month][date.day].events = eventsList;
+    saveUser(firebase, newUser);
+    handleFormClose();
+  };
+
   return (
     <Content>
       {selectedDay ? (
         <DayEventsForm
           open={isFormOpen}
           onClose={() => handleFormClose()}
-          onSave={(eventToSave) => handleSave(eventToSave)}
+          onSelect={(eventToSave) => handleSave(eventToSave)}
           onDelete={(idDelete) => handleDelete(idDelete)}
+          onMoveTop={(idMove, eventToMove) => handleMoveTop(idMove, eventToMove)}
           day={selectedDay}
           events={events}
         />

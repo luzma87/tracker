@@ -8,7 +8,7 @@ import CustomButton from '../_common/CustomButton';
 import EventsList from './EventsList';
 
 const DayEventsForm = ({
-  open, onClose, day, events, onSave, onDelete,
+  open, onClose, day, events, onSelect, onDelete, onMoveTop,
 }) => {
   const date = moment(`${day.date.day}-${day.date.month}-${day.date.year}`, 'D-M-YYYY');
   return (
@@ -20,11 +20,19 @@ const DayEventsForm = ({
         <Grid container>
           <Grid item style={{ marginRight: 4, paddingRight: 4, borderRight: 'solid 1px #999' }}>
             <DialogContentText>Events today</DialogContentText>
-            <EventsList events={day.events} onDelete={(id) => onDelete(id)} />
+            <EventsList
+              events={day.events}
+              editIcon="calendar-star"
+              onEdit={(id, event) => onMoveTop(id, event)}
+              onDelete={(id) => onDelete(id)}
+            />
           </Grid>
           <Grid item>
             <DialogContentText>Add event</DialogContentText>
-            <EventsList events={events} onClick={(event) => onSave(event)} />
+            <EventsList
+              events={events}
+              onClick={(event) => onSelect(event)}
+            />
           </Grid>
         </Grid>
       </DialogContent>
@@ -40,8 +48,9 @@ DayEventsForm.propTypes = {
   onClose: PropTypes.func,
   day: PropTypes.any,
   events: PropTypes.any,
-  onSave: PropTypes.func,
+  onSelect: PropTypes.func,
   onDelete: PropTypes.func,
+  onMoveTop: PropTypes.func,
 };
 
 DayEventsForm.defaultProps = {
@@ -49,8 +58,9 @@ DayEventsForm.defaultProps = {
   onClose: () => {},
   day: null,
   events: [],
-  onSave: () => {},
+  onSelect: () => {},
   onDelete: () => {},
+  onMoveTop: () => {},
 };
 
 export default DayEventsForm;
