@@ -142,6 +142,7 @@ function task_help {
 
   help_message+=" | ${deploy_fg}build${normal_fg}"
   help_message+=" | ${deploy_fg}deploy${normal_fg}"
+  help_message+=" | ${deploy_fg}redeploy${normal_fg}"
   echo "${help_message}"
 }
 
@@ -162,6 +163,7 @@ function execute_task {
 
     build) task_build ;;
     deploy) task_deploy ;;
+    redeploy) task_redeploy ;;
     *) task_help ;;
   esac
 }
