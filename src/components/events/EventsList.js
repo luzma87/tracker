@@ -46,13 +46,13 @@ const EventsList = ({
         if (onClick) {
           listItemParams.button = true;
           listItemParams.onClick = () => onClick(event);
-          iconSize = 32;
+          iconSize = 16;
         }
         if (selectedEvent) {
           listItemParams.selected = selectedEvent === event.id || selectedEvent === i;
         }
         return (
-          <ListItem key={`${event.name}_${i}`} {...listItemParams}>
+          <ListItem dense key={`${event.name}_${i}`} {...listItemParams}>
             <div style={eventStyle(event, iconSize)}>{event.content}</div>
             <ListItemText primary={event.name} style={{ marginRight: 8 }} />
             {getEditButton(i, event, onEdit, editIcon)}

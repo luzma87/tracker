@@ -32,6 +32,7 @@ const UserHomePage = ({ firebase, authUser }) => {
   const [year] = useState(moment().year());
   const [isFormOpen, setFormOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
+  const [comments, setComments] = useState('');
 
   let userYear = null;
 
@@ -57,13 +58,19 @@ const UserHomePage = ({ firebase, authUser }) => {
 
   const handleFormClose = () => {
     setFormOpen(false);
+    setComments('');
     setSelectedDay(null);
   };
 
   const handleDayClick = (m, d) => {
     const clickedDay = user.events[year][m][d];
     setSelectedDay(clickedDay);
+    setComments(clickedDay.comments);
     setFormOpen(true);
+  };
+
+  const handleCommentsChange = (event) => {
+    setComments(event.target.value);
   };
 
   const handleSave = (selectedEventObj) => {
@@ -93,6 +100,14 @@ const UserHomePage = ({ firebase, authUser }) => {
     handleFormClose();
   };
 
+  const handleCommentSave = () => {
+    const newUser = cloneDeep(user);
+    const { date } = selectedDay;
+    newUser.events[date.year][date.month][date.day].comments = comments;
+    saveUser(firebase, newUser);
+    handleFormClose();
+  };
+
   return (
     <Content>
       {selectedDay ? (
@@ -104,6 +119,9 @@ const UserHomePage = ({ firebase, authUser }) => {
           onMoveTop={(idMove, eventToMove) => handleMoveTop(idMove, eventToMove)}
           day={selectedDay}
           events={events}
+          comments={comments}
+          onCommentChange={(event) => handleCommentsChange(event)}
+          onCommentSave={() => handleCommentSave()}
         />
       ) : null}
       <YearGrid
