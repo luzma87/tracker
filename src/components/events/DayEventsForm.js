@@ -6,7 +6,6 @@ import {
 } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
 import CustomButton from '../_common/CustomButton';
 import EventsList from './EventsList';
 import CustomIcon from '../_common/CustomIcon';
