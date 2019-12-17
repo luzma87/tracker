@@ -73,6 +73,7 @@ code {
 .grid-today {
     border-width: 2px;
     animation: pulsate 2.5s linear infinite;
+    background: white;
 }
 
 @keyframes pulsate {
