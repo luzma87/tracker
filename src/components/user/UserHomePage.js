@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { compose } from 'recompose';
 import { cloneDeep } from 'lodash';
+import { FormControl, Select, MenuItem } from '@material-ui/core';
 import conditions from '../../constants/conditions';
 import withFirebase from '../firebase/withFirebase';
 import withAuthorization from '../session/withAuthorization';
@@ -29,17 +30,20 @@ const UserHomePage = ({ firebase, authUser }) => {
   const id = authUser.uid;
   const { isLoading, user } = usersHooks.useUser(firebase, id);
   const { events } = eventsHooks.useUserEvents(firebase, id);
-  const [year] = useState(moment().year());
+  const [year, setYear] = useState(moment().year());
   const [isFormOpen, setFormOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
   const [comments, setComments] = useState('');
-  // const events = [];
 
   let userYear = null;
+  let yearsSelect = [];
 
   if (user && !isLoading) {
     if (user.years && user.years[year]) {
       userYear = user.years[year];
+      yearsSelect = Object.keys(user.years);
+      const newYear = parseInt(yearsSelect[0], 10) + yearsSelect.length;
+      yearsSelect.push(newYear.toString());
     }
     if (!user.years || !user.years[year]) {
       const thisYear = {};
@@ -57,6 +61,7 @@ const UserHomePage = ({ firebase, authUser }) => {
       if (!newUser.years) newUser.years = {};
       newUser.years[year] = thisYear;
       saveUser(firebase, newUser);
+      yearsSelect = [year.toString(), (year + 1).toString()];
     }
   }
 
@@ -114,6 +119,18 @@ const UserHomePage = ({ firebase, authUser }) => {
 
   return (
     <Content>
+      <FormControl style={{ marginBottom: 24 }}>
+        <Select
+          value={year.toString()}
+          onChange={(event) => {
+            setYear(parseInt(event.target.value, 10));
+          }}
+        >
+          {yearsSelect.map((y) => (
+            <MenuItem key={y} value={y.toString()} component="h1" dense>{y}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       {selectedDay ? (
         <DayEventsForm
           open={isFormOpen}
