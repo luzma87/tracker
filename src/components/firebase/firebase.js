@@ -87,6 +87,31 @@ class Firebase {
   events() {
     return this.db.collection('events');
   }
+
+  userEvent(userUid, eventId) {
+    if (userUid) {
+      return this.db
+        .collection('events')
+        .doc(userUid)
+        .collection('events')
+        .doc(eventId);
+    }
+    return {
+      onSnapshot: () => {},
+    };
+  }
+
+  userEvents(userUid) {
+    if (userUid) {
+      return this.db
+        .collection('events')
+        .doc(userUid)
+        .collection('events');
+    }
+    return {
+      onSnapshot: () => {},
+    };
+  }
 }
 
 export default Firebase;

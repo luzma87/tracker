@@ -17,21 +17,21 @@ const initialState = {
   content: '',
 };
 
-const createEvent = (firebase, event) => {
+const createEvent = (firebase, userUid, event) => {
   const newEvent = { ...event };
-  const newEventRef = firebase.events().doc();
+  const newEventRef = firebase.userEvents(userUid).doc();
   newEvent.id = newEventRef.id;
   return newEventRef.set(newEvent);
 };
 
-const updateEvent = (firebase, event) => firebase.event(event.id).set(event);
+const updateEvent = (firebase, userUid, event) => firebase.userEvent(userUid, event.id).set(event);
 
-const saveEvent = (firebase, newEvent) => {
+const saveEvent = (firebase, userUid, newEvent) => {
   let promise;
   if (newEvent.id) {
-    promise = updateEvent(firebase, newEvent);
+    promise = updateEvent(firebase, userUid, newEvent);
   } else {
-    promise = createEvent(firebase, newEvent);
+    promise = createEvent(firebase, userUid, newEvent);
   }
   promise
     .then(() => {
@@ -42,8 +42,16 @@ const saveEvent = (firebase, newEvent) => {
     });
 };
 
-const EventsPage = ({ firebase }) => {
-  const { events } = eventsHooks.useEvents(firebase);
+const deleteEvent = (firebase, userUid, event) => {
+  firebase.userEvent(userUid, event.id)
+    .delete()
+    .then(() => console.log('delete successful'))
+    .catch((error) => console.log('error deleting: ', error));
+};
+
+const EventsPage = ({ firebase, authUser }) => {
+  const userUid = authUser.uid;
+  const { events } = eventsHooks.useUserEvents(firebase, userUid);
   const [selectedEvent, setSelectedEvent] = useState(initialState);
   const [isFormOpen, setFormOpen] = useState(false);
 
@@ -52,10 +60,7 @@ const EventsPage = ({ firebase }) => {
   };
 
   const handleDelete = (id, event) => {
-    firebase.event(event.id)
-      .delete()
-      .then(() => console.log('delete successful'))
-      .catch((error) => console.log('error deleting: ', error));
+    deleteEvent(firebase, userUid, event);
   };
 
   const resetState = () => {
@@ -78,7 +83,7 @@ const EventsPage = ({ firebase }) => {
   };
 
   const handleSave = () => {
-    saveEvent(firebase, selectedEvent);
+    saveEvent(firebase, userUid, selectedEvent);
     handleCancel();
   };
 
@@ -126,6 +131,7 @@ const EventsPage = ({ firebase }) => {
 
 EventsPage.propTypes = {
   firebase: PropTypes.any.isRequired,
+  authUser: PropTypes.any.isRequired,
 };
 
 EventsPage.defaultProps = {};

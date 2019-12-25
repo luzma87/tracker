@@ -12,7 +12,7 @@ import DayEventsForm from '../events/DayEventsForm';
 import usersHooks from '../../hooks/usersHooks';
 import eventsHooks from '../../hooks/eventsHooks';
 
-const getEventsList = (user, date) => user.events[date.year][date.month][date.day].events;
+const getEventsList = (user, date) => user.years[date.year][date.month][date.day].events;
 
 const saveUser = (firebase, newUser) => {
   firebase.user(newUser.uid)
@@ -28,17 +28,20 @@ const saveUser = (firebase, newUser) => {
 const UserHomePage = ({ firebase, authUser }) => {
   const id = authUser.uid;
   const { isLoading, user } = usersHooks.useUser(firebase, id);
-  const { events } = eventsHooks.useEvents(firebase);
+  const { events } = eventsHooks.useUserEvents(firebase, id);
   const [year] = useState(moment().year());
   const [isFormOpen, setFormOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
   const [comments, setComments] = useState('');
+  // const events = [];
 
   let userYear = null;
 
   if (user && !isLoading) {
-    userYear = user.events[year];
-    if (!userYear) {
+    if (user.years && user.years[year]) {
+      userYear = user.years[year];
+    }
+    if (!user.years || !user.years[year]) {
       const thisYear = {};
       for (let month = 1; month <= 12; month += 1) {
         const daysNum = moment(`${year}-${month}`, 'YYYY-M').daysInMonth();
@@ -51,7 +54,8 @@ const UserHomePage = ({ firebase, authUser }) => {
         }
       }
       const newUser = cloneDeep(user);
-      newUser.events[year] = thisYear;
+      if (!newUser.years) newUser.years = {};
+      newUser.years[year] = thisYear;
       saveUser(firebase, newUser);
     }
   }
@@ -63,7 +67,7 @@ const UserHomePage = ({ firebase, authUser }) => {
   };
 
   const handleDayClick = (m, d) => {
-    const clickedDay = user.events[year][m][d];
+    const clickedDay = user.years[year][m][d];
     setSelectedDay(clickedDay);
     setComments(clickedDay.comments);
     setFormOpen(true);
@@ -95,7 +99,7 @@ const UserHomePage = ({ firebase, authUser }) => {
     const eventsList = getEventsList(newUser, date);
     const ev = eventsList.splice(idMove, 1);
     eventsList.unshift(ev[0]);
-    newUser.events[date.year][date.month][date.day].events = eventsList;
+    newUser.years[date.year][date.month][date.day].events = eventsList;
     saveUser(firebase, newUser);
     handleFormClose();
   };
@@ -103,7 +107,7 @@ const UserHomePage = ({ firebase, authUser }) => {
   const handleCommentSave = () => {
     const newUser = cloneDeep(user);
     const { date } = selectedDay;
-    newUser.events[date.year][date.month][date.day].comments = comments;
+    newUser.years[date.year][date.month][date.day].comments = comments;
     saveUser(firebase, newUser);
     handleFormClose();
   };
