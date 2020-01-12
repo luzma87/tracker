@@ -21,14 +21,7 @@ const theme = createMuiTheme({
     active: green,
     inactive: red,
     titleButton: grey,
-  },
-  icons: {
-    building: 'warehouse',
-    place: 'draw-square',
-    user: 'user-astronaut',
-    admin: 'alicorn',
-    car: 'rocket',
-  },
+  }
 });
 const App = () => (
   <BrowserRouter>
