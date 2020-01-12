@@ -127,7 +127,7 @@ const UserHomePage = ({ firebase, authUser }) => {
           }}
         >
           {yearsSelect.map((y) => (
-            <MenuItem key={y} value={y.toString()} component="h1" dense>{y}</MenuItem>
+            <MenuItem key={y} value={y.toString()}>{y}</MenuItem>
           ))}
         </Select>
       </FormControl>
