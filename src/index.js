@@ -1,5 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faCalendarAlt,
   faCalendarDay,
   faCalendarEdit,
   faCalendarPlus,
@@ -27,7 +28,8 @@ import * as serviceWorker from './serviceWorker';
 library.add(
   faSignInAlt, faSignOutAlt, faSave, faSpinner, faGhost, faRepeat,
   faUndo, faUnlockAlt, faUser, faTrashAlt,
-  faCalendarStar, faCalendarDay, faCalendarTimes, faCalendarPlus, faCalendarEdit,
+  faCalendarStar, faCalendarDay, faCalendarTimes,
+  faCalendarPlus, faCalendarEdit, faCalendarAlt,
 
 );
 

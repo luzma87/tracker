@@ -4,6 +4,7 @@ const routes = {
   ACCOUNT: '/account',
   PASSWORD_FORGET: '/pw-forget',
   EVENTS: '/events',
+  LIST_EVENTS: '/list-events',
 };
 
 export default routes;

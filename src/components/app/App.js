@@ -13,6 +13,7 @@ import withAuthentication from '../session/withAuthentication';
 import SignInPage from '../signIn/SignInPage';
 import UserHomePage from '../user/UserHomePage';
 import EventsPage from '../events/EventsPage';
+import ListEventsPage from '../events/ListEventsPage';
 
 const theme = createMuiTheme({
   palette: {
@@ -21,7 +22,7 @@ const theme = createMuiTheme({
     active: green,
     inactive: red,
     titleButton: grey,
-  }
+  },
 });
 const App = () => (
   <BrowserRouter>
@@ -32,6 +33,7 @@ const App = () => (
       <Route path={routes.PASSWORD_FORGET} component={PasswordForgetPage} />
       <Route path={routes.ACCOUNT} component={AccountPage} />
       <Route path={routes.EVENTS} component={EventsPage} />
+      <Route path={routes.LIST_EVENTS} component={ListEventsPage} />
     </ThemeProvider>
   </BrowserRouter>
 );

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { compose } from 'recompose';
-import { cloneDeep } from 'lodash';
-import { FormControl, Select, MenuItem } from '@material-ui/core';
+import {compose} from 'recompose';
+import {cloneDeep} from 'lodash';
+import {FormControl, MenuItem, Select} from '@material-ui/core';
 import conditions from '../../constants/conditions';
 import withFirebase from '../firebase/withFirebase';
 import withAuthorization from '../session/withAuthorization';
