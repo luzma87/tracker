@@ -33,7 +33,7 @@ const a = (user, year, selectedEvent) => {
               selectedEvs.push(ev);
             }
           });
-          if (selectedEvs.length > 0 || (comments && comments.length > 0)) {
+          if (selectedEvs.length > 0) {
             if (!evs[thisMonth]) {
               evs[thisMonth] = {};
             }
