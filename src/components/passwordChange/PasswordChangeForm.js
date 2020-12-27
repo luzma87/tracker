@@ -88,7 +88,7 @@ const PasswordChangeForm = ({ firebase, user }) => {
               disabled={isInvalid || isLoading}
               onClick={(event) => onSubmit(event)}
             >
-            Cambiar
+              Cambiar
               <CustomIcon icon={icon} pulse={isLoading} style={{ marginLeft: 16 }} />
             </Button>
           </Grid>
@@ -103,7 +103,7 @@ const PasswordChangeForm = ({ firebase, user }) => {
               style={{ padding: 8, borderRadius: 8, marginTop: 16 }}
             >
               <Typography>
-            Password cambiado :)
+                Password cambiado :)
               </Typography>
             </Box>
           ) : null}

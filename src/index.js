@@ -1,22 +1,3 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faCalendarAlt,
-  faCalendarDay,
-  faCalendarEdit,
-  faCalendarPlus,
-  faCalendarStar,
-  faCalendarTimes,
-  faGhost,
-  faRepeat,
-  faSave,
-  faSignInAlt,
-  faSignOutAlt,
-  faSpinner,
-  faTrashAlt,
-  faUndo,
-  faUnlockAlt,
-  faUser,
-} from '@fortawesome/pro-regular-svg-icons';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/App';
@@ -24,14 +5,6 @@ import FirebaseContext from './components/firebase/context';
 import Firebase from './components/firebase/firebase';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-
-library.add(
-  faSignInAlt, faSignOutAlt, faSave, faSpinner, faGhost, faRepeat,
-  faUndo, faUnlockAlt, faUser, faTrashAlt,
-  faCalendarStar, faCalendarDay, faCalendarTimes,
-  faCalendarPlus, faCalendarEdit, faCalendarAlt,
-
-);
 
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>

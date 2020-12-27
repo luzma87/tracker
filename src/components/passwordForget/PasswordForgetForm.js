@@ -72,7 +72,7 @@ const PasswordForgetFormBase = ({ firebase }) => {
           style={{ padding: 8, borderRadius: 8, marginTop: 16 }}
         >
           <Typography>
-              Email con recuperación de password enviado :)
+            Email con recuperación de password enviado :)
           </Typography>
         </Box>
       ) : null}

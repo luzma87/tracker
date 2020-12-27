@@ -12,8 +12,10 @@ import PasswordForgetPage from '../passwordForget/PasswordForgetPage';
 import withAuthentication from '../session/withAuthentication';
 import SignInPage from '../signIn/SignInPage';
 import UserHomePage from '../user/UserHomePage';
+import NewUserHomePage from '../user/NewUserHomePage';
 import EventsPage from '../events/EventsPage';
 import ListEventsPage from '../events/ListEventsPage';
+import MoneyPage from '../money/MoneyPage';
 
 const theme = createMuiTheme({
   palette: {
@@ -34,6 +36,10 @@ const App = () => (
       <Route path={routes.ACCOUNT} component={AccountPage} />
       <Route path={routes.EVENTS} component={EventsPage} />
       <Route path={routes.LIST_EVENTS} component={ListEventsPage} />
+
+      <Route path={routes.MONEY} component={MoneyPage} />
+
+      <Route path={routes.NEW_HOME} component={NewUserHomePage} />
     </ThemeProvider>
   </BrowserRouter>
 );

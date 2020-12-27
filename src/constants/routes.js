@@ -5,6 +5,10 @@ const routes = {
   PASSWORD_FORGET: '/pw-forget',
   EVENTS: '/events',
   LIST_EVENTS: '/list-events',
+
+  MONEY: '/money',
+
+  NEW_HOME: '/new',
 };
 
 export default routes;

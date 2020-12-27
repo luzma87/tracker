@@ -34,3 +34,6 @@ package-lock.json
 db.json
 
 deploys
+
+.vscode
+.history

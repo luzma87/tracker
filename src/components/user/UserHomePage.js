@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import { FormControl, MenuItem, Select } from '@material-ui/core';
+import { cloneDeep } from 'lodash';
 import moment from 'moment';
-import {compose} from 'recompose';
-import {cloneDeep} from 'lodash';
-import {FormControl, MenuItem, Select} from '@material-ui/core';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { compose } from 'recompose';
 import conditions from '../../constants/conditions';
+import eventsHooks from '../../hooks/eventsHooks';
+import usersHooks from '../../hooks/usersHooks';
+import DayEventsForm from '../events/DayEventsForm';
 import withFirebase from '../firebase/withFirebase';
 import withAuthorization from '../session/withAuthorization';
 import Content from '../_common/Content';
 import YearGrid from './YearGrid';
-import DayEventsForm from '../events/DayEventsForm';
-import usersHooks from '../../hooks/usersHooks';
-import eventsHooks from '../../hooks/eventsHooks';
 
 const getEventsList = (user, date) => user.years[date.year][date.month][date.day].events;
 

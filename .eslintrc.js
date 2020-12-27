@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
   },
   extends: [
-    'airbnb'
+    'airbnb',
   ],
   globals: {
     Atomics: 'readonly',
@@ -18,10 +18,10 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react'
+    'react',
   ],
   rules: {
-    "react/jsx-filename-extension": ["off"],
-    "react/forbid-prop-types": ["off"]
+    'react/jsx-filename-extension': ['off'],
+    'react/forbid-prop-types': ['off'],
   },
 };

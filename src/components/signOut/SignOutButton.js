@@ -4,7 +4,6 @@ import React from 'react';
 import withFirebase from '../firebase/withFirebase';
 import CustomIcon from '../_common/CustomIcon';
 
-
 const SignOutButton = ({ firebase }) => (
   <Tooltip title="Salir">
     <IconButton
@@ -13,7 +12,7 @@ const SignOutButton = ({ firebase }) => (
       color="inherit"
       onClick={() => firebase.doSignOut()}
     >
-      <CustomIcon icon="sign-out-alt" color="white" />
+      <CustomIcon icon="sign-out-alt" style={{ color: 'white' }} />
     </IconButton>
   </Tooltip>
 );

@@ -56,6 +56,16 @@ function task_color {
   color {232..255}
 }
 
+function task_svg {
+  echo " ${misc_fg}svg files${normal_fg}"
+
+  npx @svgr/cli --config-file "svgr.config.js" -d src/icons/components/ src/icons/svg/
+  # npx @svgr/cli --config-file "svgr.config.js" src/icons/svg/x-color.svg
+  # --icon \
+  # --prettier-config "svg-prettier.json" \
+  # -d src/icons/components/ src/icons/svg/
+}
+
 function task_start {
 #  echo "${start_fg}Copying dev firebase config${normal_fg}"
 #  cp src/config/firebase/firebase.dev.config src/config/firebase/firebaseConfig.js
@@ -131,14 +141,16 @@ function task_help {
   help_message="usage: ./go"
   help_message+=" ${misc_fg}colors${normal_fg}"
   help_message+=" | ${misc_fg}clear_port${normal_fg}"
+  help_message+=" | ${misc_fg}svg${normal_fg}"
 
   help_message+=" | ${checks_fg}check_dep${normal_fg}"
 
   help_message+=" | ${start_fg}clean${normal_fg}"
   help_message+=" | ${start_fg}start${normal_fg}"
 
-  help_message+=" | ${start_fg}cypress${normal_fg}"
-  help_message+=" | ${start_fg}cypress_ci${normal_fg}"
+
+  # help_message+=" | ${start_fg}cypress${normal_fg}"
+  # help_message+=" | ${start_fg}cypress_ci${normal_fg}"
 
   help_message+=" | ${deploy_fg}build${normal_fg}"
   help_message+=" | ${deploy_fg}deploy${normal_fg}"
@@ -158,8 +170,10 @@ function execute_task {
     clean) task_clean ;;
     start) task_start ;;
 
-    cypress) task_cypress ;;
-    cypress_ci) task_cypress_ci ;;
+    svg) task_svg ;;
+
+    # cypress) task_cypress ;;
+    # cypress_ci) task_cypress_ci ;;
 
     build) task_build ;;
     deploy) task_deploy ;;

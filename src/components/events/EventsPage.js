@@ -113,7 +113,7 @@ const EventsPage = ({ firebase, authUser }) => {
               style={{ width: '100%' }}
               onClick={() => handleCreate()}
             >
-                New
+              New
             </Button>
             <EventsList
               events={events}

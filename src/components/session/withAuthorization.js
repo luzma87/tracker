@@ -47,5 +47,4 @@ const withAuthorization = (condition) => (Component) => {
   )(WithAuthorization);
 };
 
-
 export default withAuthorization;

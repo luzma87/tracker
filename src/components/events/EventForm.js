@@ -47,7 +47,7 @@ const EventForm = ({
     </CardContent>
     <CardActions>
       <Button size="small" color="primary" onClick={() => onCancel()}>
-          Cancel
+        Cancel
       </Button>
       <Button
         size="small"
@@ -55,7 +55,7 @@ const EventForm = ({
         startIcon={<CustomIcon icon="save" />}
         onClick={() => onSave()}
       >
-          Save
+        Save
       </Button>
     </CardActions>
   </Card>

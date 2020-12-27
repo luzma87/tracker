@@ -26,7 +26,6 @@ const getDisplayMonthFromSelect = (selectedMonth) => {
   return `${getDisplayMonthForSelect(parseInt(month, 10))} ${year}`;
 };
 
-
 const getDateObjectFromSelect = (selectedMonth) => {
   const [month, year] = selectedMonth.split('_');
   return { month, year };

@@ -16,10 +16,11 @@ const NavigationAuth = () => (
         <NavBarIconButton id="tracker" title="Tracker" icon="calendar-star" to={routes.HOME} />
         <NavBarIconButton id="list" title="List" icon="calendar-alt" to={routes.LIST_EVENTS} />
         <NavBarIconButton id="events" title="Events" icon="calendar-day" to={routes.EVENTS} />
+        <NavBarIconButton id="emoneyvents" title="Money" icon="money-bill-alt" to={routes.MONEY} />
       </div>
 
       <div className="navbar-part">
-        <NavBarIconButton id="my-account" title="Mi cuenta" icon="user" to={routes.ACCOUNT} />
+        <NavBarIconButton id="my-account" title="Mi cuenta" icon="user" to={routes.ACCOUNT} color="white" />
         <SignOutButton />
       </div>
     </Toolbar>
