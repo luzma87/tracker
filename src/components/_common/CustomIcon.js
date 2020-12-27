@@ -32,10 +32,10 @@ const icons = (props) => ({
   store: <ShoppingCartBw {...props} />,
   delete: <XColor {...props} />,
   pencil: <PencilColor {...props} />,
+  calendar: <CalendarBw {...props} />,
   'calendar-times': <CalendarDeleteBw {...props} />,
   'calendar-edit': <CalendarEditBw {...props} />,
   'calendar-plus': <CalendarAddBw {...props} />,
-  'calendar-alt': <CalendarBw {...props} />,
   'calendar-day': <CalendarDayBw {...props} />,
   'calendar-star': <CalendarStarBw {...props} />,
 });

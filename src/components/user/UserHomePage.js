@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { compose } from 'recompose';
 import conditions from '../../constants/conditions';
 import eventsHooks from '../../hooks/eventsHooks';
+import storesHooks from '../../hooks/storesHooks';
 import usersHooks from '../../hooks/usersHooks';
 import DayEventsForm from '../events/DayEventsForm';
 import withFirebase from '../firebase/withFirebase';
@@ -30,6 +31,7 @@ const UserHomePage = ({ firebase, authUser }) => {
   const id = authUser.uid;
   const { isLoading, user } = usersHooks.useUser(firebase, id);
   const { events } = eventsHooks.useUserEvents(firebase, id);
+  const { stores } = storesHooks.useUserStores(firebase, id);
   const [year, setYear] = useState(moment().year());
   const [isFormOpen, setFormOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
@@ -37,6 +39,7 @@ const UserHomePage = ({ firebase, authUser }) => {
 
   let userYear = null;
   let yearsSelect = [];
+  const currentConfig = authUser.config[year];
 
   if (user && !isLoading) {
     if (user.years && user.years[year]) {
@@ -117,6 +120,26 @@ const UserHomePage = ({ firebase, authUser }) => {
     handleFormClose();
   };
 
+  const handleMoneySave = (state) => {
+    console.log("saving", state)
+    const newUser = cloneDeep(user);
+    const { date } = selectedDay;
+    if (!newUser.years[date.year][date.month][date.day].money) {
+      newUser.years[date.year][date.month][date.day].money = [];
+    }
+    newUser.years[date.year][date.month][date.day].money.push(state);
+
+    const newEvent = {
+      color: '#ffe500',
+      content: '💸',
+      name: state.store.name
+    };
+    getEventsList(newUser, selectedDay.date).push(newEvent);
+
+    saveUser(firebase, newUser);
+    handleFormClose();
+  }
+
   return (
     <Content>
       <FormControl style={{ marginBottom: 24 }}>
@@ -140,9 +163,12 @@ const UserHomePage = ({ firebase, authUser }) => {
           onMoveTop={(idMove, eventToMove) => handleMoveTop(idMove, eventToMove)}
           day={selectedDay}
           events={events}
+          stores={stores}
           comments={comments}
+          config={currentConfig}
           onCommentChange={(event) => handleCommentsChange(event)}
           onCommentSave={() => handleCommentSave()}
+          onMoneySave={(state) => handleMoneySave(state)}
         />
       ) : null}
       <YearGrid

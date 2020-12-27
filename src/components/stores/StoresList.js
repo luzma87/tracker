@@ -31,11 +31,9 @@ const StoresList = ({
   return (
     <List>
       {stores.map((store, i) => {
-        let iconSize = 24;
         if (onClick) {
           listItemParams.button = true;
           listItemParams.onClick = () => onClick(store);
-          iconSize = 16;
         }
         if (selectedStore) {
           listItemParams.selected = selectedStore === store.id || selectedStore === i;
