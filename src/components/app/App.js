@@ -16,6 +16,7 @@ import NewUserHomePage from '../user/NewUserHomePage';
 import EventsPage from '../events/EventsPage';
 import ListEventsPage from '../events/ListEventsPage';
 import MoneyPage from '../money/MoneyPage';
+import StoresPage from '../stores/StoresPage';
 
 const theme = createMuiTheme({
   palette: {
@@ -38,6 +39,7 @@ const App = () => (
       <Route path={routes.LIST_EVENTS} component={ListEventsPage} />
 
       <Route path={routes.MONEY} component={MoneyPage} />
+      <Route path={routes.STORES} component={StoresPage} />
 
       <Route path={routes.NEW_HOME} component={NewUserHomePage} />
     </ThemeProvider>

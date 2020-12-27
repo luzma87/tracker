@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-const SvgCalendar = ({ title, titleId, ...props }) => (
+const SvgCalendarBw = ({ title, titleId, ...props }) => (
   <SvgIcon {...props}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,12 +27,12 @@ const SvgCalendar = ({ title, titleId, ...props }) => (
   </SvgIcon>
 );
 
-SvgCalendar.defaultProps = {
+SvgCalendarBw.defaultProps = {
   title: null,
   titleId: null,
 };
-SvgCalendar.propTypes = {
+SvgCalendarBw.propTypes = {
   title: PropTypes.string,
   titleId: PropTypes.string,
 };
-export default SvgCalendar;
+export default SvgCalendarBw;

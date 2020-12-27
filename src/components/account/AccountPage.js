@@ -19,7 +19,7 @@ const AccountPage = ({ authUser }) => (
       <Paper style={{ padding: 16 }}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <CardTitle label="Cambiar password" icon="unlock-alt" />
+            <CardTitle label="Cambiar password" icon="unlock" />
           </Grid>
           <Grid item xs={12}>
             <PasswordChangeForm user={authUser} />

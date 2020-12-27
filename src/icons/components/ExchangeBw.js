@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-const SvgExchange = ({ title, titleId, ...props }) => (
+const SvgExchangeBw = ({ title, titleId, ...props }) => (
   <SvgIcon {...props}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,12 +19,12 @@ const SvgExchange = ({ title, titleId, ...props }) => (
   </SvgIcon>
 );
 
-SvgExchange.defaultProps = {
+SvgExchangeBw.defaultProps = {
   title: null,
   titleId: null,
 };
-SvgExchange.propTypes = {
+SvgExchangeBw.propTypes = {
   title: PropTypes.string,
   titleId: PropTypes.string,
 };
-export default SvgExchange;
+export default SvgExchangeBw;

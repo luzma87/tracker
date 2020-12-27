@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-const SvgPiggyBank = ({ title, titleId, ...props }) => (
+const SvgPiggyBankBw = ({ title, titleId, ...props }) => (
   <SvgIcon {...props}>
     <svg
       height="1em"
@@ -20,12 +20,12 @@ const SvgPiggyBank = ({ title, titleId, ...props }) => (
   </SvgIcon>
 );
 
-SvgPiggyBank.defaultProps = {
+SvgPiggyBankBw.defaultProps = {
   title: null,
   titleId: null,
 };
-SvgPiggyBank.propTypes = {
+SvgPiggyBankBw.propTypes = {
   title: PropTypes.string,
   titleId: PropTypes.string,
 };
-export default SvgPiggyBank;
+export default SvgPiggyBankBw;

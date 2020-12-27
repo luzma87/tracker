@@ -97,7 +97,7 @@ class Firebase {
         .doc(eventId);
     }
     return {
-      onSnapshot: () => {},
+      onSnapshot: () => { },
     };
   }
 
@@ -109,7 +109,32 @@ class Firebase {
         .collection('events');
     }
     return {
-      onSnapshot: () => {},
+      onSnapshot: () => { },
+    };
+  }
+
+  userStore(userUid, storeId) {
+    if (userUid) {
+      return this.db
+        .collection('stores')
+        .doc(userUid)
+        .collection('stores')
+        .doc(storeId);
+    }
+    return {
+      onSnapshot: () => { },
+    };
+  }
+
+  userStores(userUid) {
+    if (userUid) {
+      return this.db
+        .collection('stores')
+        .doc(userUid)
+        .collection('stores');
+    }
+    return {
+      onSnapshot: () => { },
     };
   }
 }

@@ -12,7 +12,7 @@ const SignOutButton = ({ firebase }) => (
       color="inherit"
       onClick={() => firebase.doSignOut()}
     >
-      <CustomIcon icon="sign-out-alt" style={{ color: 'white' }} />
+      <CustomIcon icon="logout" style={{ color: 'white' }} />
     </IconButton>
   </Tooltip>
 );

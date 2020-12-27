@@ -3,35 +3,34 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { compose } from 'recompose';
 import conditions from '../../constants/conditions';
-import eventsHooks from '../../hooks/eventsHooks';
+import storesHooks from '../../hooks/storesHooks';
 import withFirebase from '../firebase/withFirebase';
 import withAuthorization from '../session/withAuthorization';
 import Content from '../_common/Content';
 import CustomIcon from '../_common/CustomIcon';
-import EventForm from './EventForm';
-import EventsList from './EventsList';
+import StoreForm from './StoreForm';
+import StoresList from './StoresList';
 
 const initialState = {
   name: '',
-  color: '',
-  content: '',
+  ruc: ''
 };
 
-const createEvent = (firebase, userUid, event) => {
-  const newEvent = { ...event };
-  const newEventRef = firebase.userEvents(userUid).doc();
-  newEvent.id = newEventRef.id;
-  return newEventRef.set(newEvent);
+const createStore = (firebase, userUid, event) => {
+  const newStore = { ...event };
+  const newStoreRef = firebase.userStores(userUid).doc();
+  newStore.id = newStoreRef.id;
+  return newStoreRef.set(newStore);
 };
 
-const updateEvent = (firebase, userUid, event) => firebase.userEvent(userUid, event.id).set(event);
+const updateStore = (firebase, userUid, store) => firebase.userStore(userUid, store.id).set(store);
 
-const saveEvent = (firebase, userUid, newEvent) => {
+const saveStore = (firebase, userUid, newStore) => {
   let promise;
-  if (newEvent.id) {
-    promise = updateEvent(firebase, userUid, newEvent);
+  if (newStore.id) {
+    promise = updateStore(firebase, userUid, newStore);
   } else {
-    promise = createEvent(firebase, userUid, newEvent);
+    promise = createStore(firebase, userUid, newStore);
   }
   promise
     .then(() => {
@@ -42,29 +41,29 @@ const saveEvent = (firebase, userUid, newEvent) => {
     });
 };
 
-const deleteEvent = (firebase, userUid, event) => {
-  firebase.userEvent(userUid, event.id)
+const deleteStore = (firebase, userUid, store) => {
+  firebase.userStore(userUid, store.id)
     .delete()
     .then(() => console.log('delete successful'))
     .catch((error) => console.log('error deleting: ', error));
 };
 
-const EventsPage = ({ firebase, authUser }) => {
+const StoresPage = ({ firebase, authUser }) => {
   const userUid = authUser.uid;
-  const { events } = eventsHooks.useUserEvents(firebase, userUid);
-  const [selectedEvent, setSelectedEvent] = useState(initialState);
+  const { stores } = storesHooks.useUserStores(firebase, userUid);
+  const [selectedStore, setSelectedStore] = useState(initialState);
   const [isFormOpen, setFormOpen] = useState(false);
 
   const onDataChange = (event) => {
-    setSelectedEvent({ ...selectedEvent, [event.target.name]: event.target.value });
+    setSelectedStore({ ...selectedStore, [event.target.name]: event.target.value });
   };
 
-  const handleDelete = (id, event) => {
-    deleteEvent(firebase, userUid, event);
+  const handleDelete = (id, store) => {
+    deleteStore(firebase, userUid, store);
   };
 
   const resetState = () => {
-    setSelectedEvent(initialState);
+    setSelectedStore(initialState);
   };
 
   const handleCreate = () => {
@@ -72,9 +71,9 @@ const EventsPage = ({ firebase, authUser }) => {
     setFormOpen(true);
   };
 
-  const handleEdit = (id, event) => {
+  const handleEdit = (id, store) => {
     setFormOpen(true);
-    setSelectedEvent(event);
+    setSelectedStore(store);
   };
 
   const handleCancel = () => {
@@ -83,7 +82,7 @@ const EventsPage = ({ firebase, authUser }) => {
   };
 
   const handleSave = () => {
-    saveEvent(firebase, userUid, selectedEvent);
+    saveStore(firebase, userUid, selectedStore);
     handleCancel();
   };
 
@@ -91,11 +90,11 @@ const EventsPage = ({ firebase, authUser }) => {
     if (!isFormOpen) return null;
     return (
       <Grid item>
-        <EventForm
+        <StoreForm
           onSave={() => handleSave()}
           onCancel={() => handleCancel()}
           onDataChange={(event) => onDataChange(event)}
-          selectedEvent={selectedEvent}
+          selectedStore={selectedStore}
         />
       </Grid>
     );
@@ -107,7 +106,7 @@ const EventsPage = ({ firebase, authUser }) => {
         <Grid item style={{ marginRight: 24 }}>
           <Paper>
             <Button
-              startIcon={<CustomIcon icon="calendar-plus" />}
+              startIcon={<CustomIcon icon="store" />}
               color="primary"
               variant="outlined"
               style={{ width: '100%' }}
@@ -115,28 +114,28 @@ const EventsPage = ({ firebase, authUser }) => {
             >
               New
             </Button>
-            <EventsList
-              events={events}
-              selectedEvent={selectedEvent.id}
-              onEdit={(id, event) => handleEdit(id, event)}
-              onDelete={(id, event) => handleDelete(id, event)}
+            <StoresList
+              stores={stores}
+              selectedStore={selectedStore.id}
+              onEdit={(id, store) => handleEdit(id, store)}
+              onDelete={(id, store) => handleDelete(id, store)}
             />
           </Paper>
         </Grid>
         {getForm()}
       </Grid>
     </Content>
-  );
+  )
 };
 
-EventsPage.propTypes = {
+StoresPage.propTypes = {
   firebase: PropTypes.any.isRequired,
   authUser: PropTypes.any.isRequired,
 };
 
-EventsPage.defaultProps = {};
+StoresPage.defaultProps = {};
 
 export default compose(
   withAuthorization(conditions.isLoggedUser),
   withFirebase,
-)(EventsPage);
+)(StoresPage);

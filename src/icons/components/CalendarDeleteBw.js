@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-const SvgCalendarDay = ({ title, titleId, ...props }) => (
+const SvgCalendarDeleteBw = ({ title, titleId, ...props }) => (
   <SvgIcon {...props}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,26 +13,18 @@ const SvgCalendarDay = ({ title, titleId, ...props }) => (
       {...props}
     >
       {title ? <title id={titleId}>{title}</title> : null}
-      <path d="M279 364c0 22.056 17.944 40 40 40h47c22.056 0 40-17.944 40-40v-47c0-22.056-17.944-40-40-40h-47c-22.056 0-40 17.944-40 40v47zm40-47h47l.025 46.999L366 364h-47v-47z" />
-      <circle cx={386} cy={210} r={20} />
-      <circle cx={299} cy={210} r={20} />
       <path d="M492 352c11.046 0 20-8.954 20-20V120c0-44.112-35.888-80-80-80h-26V20c0-11.046-8.954-20-20-20s-20 8.954-20 20v20h-91V20c0-11.046-8.954-20-20-20s-20 8.954-20 20v20h-90V20c0-11.046-8.954-20-20-20s-20 8.954-20 20v20H80C35.888 40 0 75.888 0 120v312c0 44.112 35.888 80 80 80h352c44.112 0 80-35.888 80-80 0-11.046-8.954-20-20-20s-20 8.954-20 20c0 22.056-17.944 40-40 40H80c-22.056 0-40-17.944-40-40V120c0-22.056 17.944-40 40-40h25v20c0 11.046 8.954 20 20 20s20-8.954 20-20V80h90v20c0 11.046 8.954 20 20 20s20-8.954 20-20V80h91v20c0 11.046 8.954 20 20 20s20-8.954 20-20V80h26c22.056 0 40 17.944 40 40v212c0 11.046 8.954 20 20 20z" />
-      <circle cx={125} cy={384} r={20} />
-      <circle cx={125} cy={210} r={20} />
-      <circle cx={125} cy={297} r={20} />
-      <circle cx={212} cy={297} r={20} />
-      <circle cx={212} cy={210} r={20} />
-      <circle cx={212} cy={384} r={20} />
+      <path d="M176.858 375.142C180.763 379.047 185.881 381 191 381s10.237-1.953 14.142-5.858L256 324.284l50.858 50.858A19.937 19.937 0 00321 381a19.937 19.937 0 0014.142-5.858c7.811-7.81 7.811-20.473 0-28.284L284.284 296l50.858-50.858c7.811-7.81 7.81-20.473 0-28.284s-20.473-7.811-28.284 0L256 267.716l-50.858-50.858c-7.81-7.811-20.473-7.81-28.284 0s-7.811 20.473 0 28.284L227.716 296l-50.858 50.858c-7.811 7.81-7.811 20.473 0 28.284z" />
     </svg>
   </SvgIcon>
 );
 
-SvgCalendarDay.defaultProps = {
+SvgCalendarDeleteBw.defaultProps = {
   title: null,
   titleId: null,
 };
-SvgCalendarDay.propTypes = {
+SvgCalendarDeleteBw.propTypes = {
   title: PropTypes.string,
   titleId: PropTypes.string,
 };
-export default SvgCalendarDay;
+export default SvgCalendarDeleteBw;

@@ -7,6 +7,7 @@ const routes = {
   LIST_EVENTS: '/list-events',
 
   MONEY: '/money',
+  STORES: '/stores',
 
   NEW_HOME: '/new',
 };

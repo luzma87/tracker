@@ -14,7 +14,6 @@
     "firebase": "^8.2.1",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
-    "numeral": "^2.0.6",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-color": "^2.19.3",
@@ -24,12 +23,7 @@
     "react-scripts": "4.0.1",
     "recompose": "^0.30.0"
   },
-  "devDependencies": {
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.21.5"
-  },
+  "devDependencies": {},
   "eslintConfig": {
     "extends": "react-app"
   },

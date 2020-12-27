@@ -16,7 +16,8 @@ const NavigationAuth = () => (
         <NavBarIconButton id="tracker" title="Tracker" icon="calendar-star" to={routes.HOME} />
         <NavBarIconButton id="list" title="List" icon="calendar-alt" to={routes.LIST_EVENTS} />
         <NavBarIconButton id="events" title="Events" icon="calendar-day" to={routes.EVENTS} />
-        <NavBarIconButton id="emoneyvents" title="Money" icon="money-bill-alt" to={routes.MONEY} />
+        <NavBarIconButton id="money" title="Money" icon="money" to={routes.MONEY} />
+        <NavBarIconButton id="stores" title="Stores" icon="store" to={routes.STORES} />
       </div>
 
       <div className="navbar-part">
