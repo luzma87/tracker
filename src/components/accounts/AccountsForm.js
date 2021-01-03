@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { SketchPicker } from 'react-color';
 import CustomIcon from '../_common/CustomIcon';
 import CustomTextField from '../_common/CustomTextField';
 
@@ -16,15 +17,21 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
 }));
 
 const AccountsForm = ({
   selectedAccount, onDataChange, onCancel, onSave,
 }) => {
   const classes = useStyles();
+  const onChangeComplete = (color) => {
+    const newEvent = {
+      target: {
+        name: 'color',
+        value: color.hex,
+      },
+    };
+    onDataChange(newEvent);
+  };
   return (
     <Card>
       <CardContent>
@@ -38,6 +45,25 @@ const AccountsForm = ({
             id="name"
             label="Name"
             onChange={(event) => onDataChange(event)}
+          />
+          <CustomTextField
+            value={selectedAccount.icon}
+            id="icon"
+            label="Icon"
+            onChange={(event) => onDataChange(event)}
+          />
+          <SketchPicker
+            color={selectedAccount.color}
+            onChangeComplete={onChangeComplete}
+            presetColors={[
+              '#F78DA7', '#EB144C', '#D0021B',
+              '#F8E71C', '#FCB900', '#F5A623', '#FF6900', '#8B572A',
+              '#B8E986', '#7ED321', '#417505',
+              '#50E3C2', '#7BDCB5', '#00D084',
+              '#4A90E2', '#8ED1FC',
+              '#BD10E0', '#9013FE', '#9900EF',
+              '#ABB8C3', '#9B9B9B', '#4A4A4A',
+            ]}
           />
           <FormControl className={classes.formControl}>
             <InputLabel id="type-label">Type</InputLabel>

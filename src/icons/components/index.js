@@ -13,6 +13,7 @@ export { default as CategoriesColor } from './CategoriesColor'
 export { default as EventStarBw } from './EventStarBw';
 export { default as EventStarColor } from './EventStarColor';
 export { default as ExchangeBw } from './ExchangeBw';
+export { default as LoginBw } from './LoginBw'
 export { default as LogoutBw } from './LogoutBw';
 export { default as LogoutColor } from './LogoutColor';
 export { default as PadlockBw } from './PadlockBw';

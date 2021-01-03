@@ -117,11 +117,12 @@ const CategoriesPage = ({ firebase, authUser }) => {
 
   return (
     <Content>
+      Categories
       <Grid container>
         <Grid item style={{ marginRight: 24 }}>
           <Paper>
             <Button
-              startIcon={<CustomIcon icon="store" />}
+              startIcon={<CustomIcon icon="categories" />}
               color="primary"
               variant="outlined"
               style={{ width: '100%' }}

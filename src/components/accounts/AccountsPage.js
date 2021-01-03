@@ -113,11 +113,12 @@ const AccountsPage = ({ firebase, authUser }) => {
 
   return (
     <Content>
+      Accounts
       <Grid container>
         <Grid item style={{ marginRight: 24 }}>
           <Paper>
             <Button
-              startIcon={<CustomIcon icon="store" />}
+              startIcon={<CustomIcon icon="money" />}
               color="primary"
               variant="outlined"
               style={{ width: '100%' }}

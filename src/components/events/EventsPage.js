@@ -103,6 +103,7 @@ const EventsPage = ({ firebase, authUser }) => {
 
   return (
     <Content>
+      Events
       <Grid container>
         <Grid item style={{ marginRight: 24 }}>
           <Paper>

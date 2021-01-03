@@ -30,19 +30,21 @@ const CategoriesList = ({
   const listItemParams = {};
   return (
     <List>
-      {categories.map((store, i) => {
+      {categories.map((cat, i) => {
         if (onClick) {
           listItemParams.button = true;
-          listItemParams.onClick = () => onClick(store);
+          listItemParams.onClick = () => onClick(cat);
         }
         if (selectedCategory) {
-          listItemParams.selected = selectedCategory === store.id || selectedCategory === i;
+          listItemParams.selected = selectedCategory === cat.id || selectedCategory === i;
         }
         return (
-          <ListItem dense key={`${store.name}_${i}`} {...listItemParams}>
-            <ListItemText primary={store.name} style={{ marginRight: 8 }} />
-            {getEditButton(i, store, onEdit, editIcon)}
-            {getDeleteButton(i, store, onDelete)}
+          <ListItem dense key={`${cat.name}_${i}`} {...listItemParams}>
+            <ListItemText
+              primary={`${cat.name} ${cat.deductible ? ` (deductible)` : ''}`}
+              style={{ marginRight: 8 }} />
+            {getEditButton(i, cat, onEdit, editIcon)}
+            {getDeleteButton(i, cat, onDelete)}
           </ListItem>
         );
       })}

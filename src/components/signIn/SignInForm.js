@@ -47,7 +47,7 @@ const SignInFormBase = ({ firebase, history }) => {
 
   const { email, password, error } = values;
   const isInvalid = password === '' || email === '';
-  const icon = isLoading ? 'spinner' : 'sign-in-alt';
+  const icon = isLoading ? 'spinner' : 'login';
   return (
     <form onSubmit={(event) => onSubmit(event)}>
       <div>

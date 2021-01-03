@@ -102,6 +102,7 @@ const StoresPage = ({ firebase, authUser }) => {
 
   return (
     <Content>
+      Stores
       <Grid container>
         <Grid item style={{ marginRight: 24 }}>
           <Paper>
