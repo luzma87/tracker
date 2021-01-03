@@ -8,6 +8,8 @@ const routes = {
 
   MONEY: '/money',
   STORES: '/stores',
+  ACCOUNTS: '/accounts',
+  CATEGORIES: '/categories',
 
   NEW_HOME: '/new',
 };

@@ -14,7 +14,7 @@ const eventTypes = {
 }
 
 const DayEventsForm = ({
-  open, onClose, day, comments, events, stores, config, onMoneySave,
+  open, onClose, day, comments, events, onMoneySave,
   onSelect, onDelete, onMoveTop, onCommentChange, onCommentSave,
 }) => {
   const [eventType, setEventType] = useState(eventTypes.CALENDAR);
@@ -39,8 +39,6 @@ const DayEventsForm = ({
     if (eventType === eventTypes.MONEY) {
       return (
         <MoneyFormContent
-          stores={stores}
-          config={config}
           onMoneySave={(state) => onMoneySave(state)}
           onChangeToCalendar={() => setEventType(eventTypes.CALENDAR)} />
       )
@@ -85,7 +83,6 @@ DayEventsForm.defaultProps = {
   comments: '',
   config: {},
   events: [],
-  stores: [],
   onSelect: () => { },
   onDelete: () => { },
   onMoveTop: () => { },

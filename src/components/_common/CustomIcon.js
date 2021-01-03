@@ -3,22 +3,23 @@ import { withTheme } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  CalendarBw,
   CalendarAddBw,
+  CalendarBw,
   CalendarDayBw,
   CalendarDeleteBw,
   CalendarEditBw,
   CalendarStarBw,
+  CategoriesBw,
   ExchangeBw,
   LogoutBw,
   PadlockColor,
   PencilColor,
   PiggyBankBw,
   SaveBw,
+  ShoppingCartBw,
   SpinnerColor,
   UserBw,
-  ShoppingCartBw,
-  XColor,
+  XColor
 } from '../../icons/components';
 
 const icons = (props) => ({
@@ -33,6 +34,7 @@ const icons = (props) => ({
   delete: <XColor {...props} />,
   pencil: <PencilColor {...props} />,
   calendar: <CalendarBw {...props} />,
+  categories: <CategoriesBw {...props} />,
   'calendar-times': <CalendarDeleteBw {...props} />,
   'calendar-edit': <CalendarEditBw {...props} />,
   'calendar-plus': <CalendarAddBw {...props} />,
@@ -71,4 +73,5 @@ Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from
 Icons made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 Icons made by <a href="https://www.flaticon.com/authors/smartline" title="Smartline">Smartline</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 */

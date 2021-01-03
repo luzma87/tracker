@@ -39,7 +39,6 @@ const UserHomePage = ({ firebase, authUser }) => {
 
   let userYear = null;
   let yearsSelect = [];
-  const currentConfig = authUser.config[year];
 
   if (user && !isLoading) {
     if (user.years && user.years[year]) {
@@ -129,10 +128,17 @@ const UserHomePage = ({ firebase, authUser }) => {
     }
     newUser.years[date.year][date.month][date.day].money.push(state);
 
+    const color = state.account.color && state.account.color.length > 0
+      ? state.account.color
+      : '#ffe500';
+    const content = state.account.icon && state.account.icon.length > 0
+      ? state.account.icon
+      : '💸';
+
     const newEvent = {
-      color: '#ffe500',
-      content: '💸',
-      name: state.store.name
+      color,
+      content,
+      name: state.account.type
     };
     getEventsList(newUser, selectedDay.date).push(newEvent);
 
@@ -165,7 +171,6 @@ const UserHomePage = ({ firebase, authUser }) => {
           events={events}
           stores={stores}
           comments={comments}
-          config={currentConfig}
           onCommentChange={(event) => handleCommentsChange(event)}
           onCommentSave={() => handleCommentSave()}
           onMoneySave={(state) => handleMoneySave(state)}

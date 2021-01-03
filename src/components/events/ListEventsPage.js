@@ -135,20 +135,22 @@ const ListEventsPage = ({ firebase, authUser }) => {
                     </p>
                   ) : <p>&nbsp;</p>}
                 </Grid>
-                {dayContent.events.map((event) => (
-                  <Grid
-                    key={`${month}_${day}_${event.content}`}
-                    item
-                    style={{
-                      border: 'solid 1px black',
-                      borderRadius: 8,
-                      margin: 2,
-                      background: event.color,
-                    }}
-                  >
-                    {event.content}
-                  </Grid>
-                ))}
+                {dayContent.events.map((event, i) => {
+                  return (
+                    <Grid
+                      key={`${month}_${day}_${event.content}_${i}`}
+                      item
+                      style={{
+                        border: 'solid 1px black',
+                        borderRadius: 8,
+                        margin: 2,
+                        background: event.color,
+                      }}
+                    >
+                      {event.content}
+                    </Grid>
+                  )
+                })}
               </Grid>
             ))}
           </Grid>

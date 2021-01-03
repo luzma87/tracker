@@ -88,55 +88,62 @@ class Firebase {
     return this.db.collection('events');
   }
 
-  userEvent(userUid, eventId) {
+
+  userThing(thing, userUid, thingId) {
     if (userUid) {
-      return this.db
-        .collection('events')
-        .doc(userUid)
-        .collection('events')
-        .doc(eventId);
+      return this
+        .userThings(thing, userUid)
+        .doc(thingId);
     }
     return {
       onSnapshot: () => { },
     };
+  }
+
+  userThings(thing, userUid) {
+    if (userUid) {
+      return this.db
+        .collection(thing)
+        .doc(userUid)
+        .collection(thing);
+    }
+    return {
+      onSnapshot: () => { },
+    };
+  }
+
+  userEvent(userUid, id) {
+    return this.userThing('events', userUid, id);
   }
 
   userEvents(userUid) {
-    if (userUid) {
-      return this.db
-        .collection('events')
-        .doc(userUid)
-        .collection('events');
-    }
-    return {
-      onSnapshot: () => { },
-    };
+    return this.userThings('events', userUid);
   }
 
-  userStore(userUid, storeId) {
-    if (userUid) {
-      return this.db
-        .collection('stores')
-        .doc(userUid)
-        .collection('stores')
-        .doc(storeId);
-    }
-    return {
-      onSnapshot: () => { },
-    };
+  userStore(userUid, id) {
+    return this.userThing('stores', userUid, id);
   }
 
   userStores(userUid) {
-    if (userUid) {
-      return this.db
-        .collection('stores')
-        .doc(userUid)
-        .collection('stores');
-    }
-    return {
-      onSnapshot: () => { },
-    };
+    return this.userThings('stores', userUid);
   }
+
+  userCategory(userUid, id) {
+    return this.userThing('categories', userUid, id);
+  }
+
+  userCategories(userUid) {
+    return this.userThings('categories', userUid);
+  }
+
+  userAccount(userUid, id) {
+    return this.userThing('accounts', userUid, id);
+  }
+
+  userAccounts(userUid) {
+    return this.userThings('accounts', userUid);
+  }
+
 }
 
 export default Firebase;

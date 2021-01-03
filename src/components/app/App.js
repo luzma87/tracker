@@ -1,5 +1,5 @@
 import {
-  amber, green, grey, purple, red,
+  amber, green, grey, purple, red
 } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -7,16 +7,18 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import routes from '../../constants/routes';
 import AccountPage from '../account/AccountPage';
+import AccountsPage from '../accounts/AccountsPage';
+import CategoriesPage from '../categories/CategoriesPage';
+import EventsPage from '../events/EventsPage';
+import ListEventsPage from '../events/ListEventsPage';
+import MoneyPage from '../money/MoneyPage';
 import Navigation from '../navigation/Navigation';
 import PasswordForgetPage from '../passwordForget/PasswordForgetPage';
 import withAuthentication from '../session/withAuthentication';
 import SignInPage from '../signIn/SignInPage';
-import UserHomePage from '../user/UserHomePage';
-import NewUserHomePage from '../user/NewUserHomePage';
-import EventsPage from '../events/EventsPage';
-import ListEventsPage from '../events/ListEventsPage';
-import MoneyPage from '../money/MoneyPage';
 import StoresPage from '../stores/StoresPage';
+import NewUserHomePage from '../user/NewUserHomePage';
+import UserHomePage from '../user/UserHomePage';
 
 const theme = createMuiTheme({
   palette: {
@@ -40,6 +42,8 @@ const App = () => (
 
       <Route path={routes.MONEY} component={MoneyPage} />
       <Route path={routes.STORES} component={StoresPage} />
+      <Route path={routes.CATEGORIES} component={CategoriesPage} />
+      <Route path={routes.ACCOUNTS} component={AccountsPage} />
 
       <Route path={routes.NEW_HOME} component={NewUserHomePage} />
     </ThemeProvider>
