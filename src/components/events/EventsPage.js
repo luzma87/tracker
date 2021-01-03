@@ -1,4 +1,4 @@
-import { Button, Grid, Paper } from '@material-ui/core';
+import { Button, Grid, Paper, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { compose } from 'recompose';
@@ -103,7 +103,9 @@ const EventsPage = ({ firebase, authUser }) => {
 
   return (
     <Content>
-      Events
+      <Typography variant="h5" color="primary">
+        Events
+      </Typography>
       <Grid container>
         <Grid item style={{ marginRight: 24 }}>
           <Paper>
