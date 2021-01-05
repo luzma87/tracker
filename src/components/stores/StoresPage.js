@@ -13,6 +13,7 @@ import StoresList from './StoresList';
 
 const initialState = {
   name: '',
+  legalName: '',
   ruc: ''
 };
 

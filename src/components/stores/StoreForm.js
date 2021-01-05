@@ -9,42 +9,48 @@ import CustomTextField from '../_common/CustomTextField';
 const StoreForm = ({
   selectedStore, onDataChange, onCancel, onSave,
 }) => (
-    <Card>
-      <CardContent>
-        <form
-          noValidate
-          autoComplete="off"
-          style={{ display: 'flex', flexDirection: 'column' }}
-        >
-          <CustomTextField
-            value={selectedStore.name}
-            id="name"
-            label="Name"
-            onChange={(event) => onDataChange(event)}
-          />
-          <CustomTextField
-            value={selectedStore.ruc}
-            id="ruc"
-            label="RUC"
-            onChange={(event) => onDataChange(event)}
-          />
-        </form>
-      </CardContent>
-      <CardActions>
-        <Button size="small" color="primary" onClick={() => onCancel()}>
-          Cancel
+  <Card>
+    <CardContent>
+      <form
+        noValidate
+        autoComplete="off"
+        style={{ display: 'flex', flexDirection: 'column' }}
+      >
+        <CustomTextField
+          value={selectedStore.name}
+          id="name"
+          label="Name"
+          onChange={(event) => onDataChange(event)}
+        />
+        <CustomTextField
+          value={selectedStore.legalName}
+          id="legalName"
+          label="Legal Name"
+          onChange={(event) => onDataChange(event)}
+        />
+        <CustomTextField
+          value={selectedStore.ruc}
+          id="ruc"
+          label="RUC"
+          onChange={(event) => onDataChange(event)}
+        />
+      </form>
+    </CardContent>
+    <CardActions>
+      <Button size="small" color="primary" onClick={() => onCancel()}>
+        Cancel
       </Button>
-        <Button
-          size="small"
-          color="primary"
-          startIcon={<CustomIcon icon="save" />}
-          onClick={() => onSave()}
-        >
-          Save
+      <Button
+        size="small"
+        color="primary"
+        startIcon={<CustomIcon icon="save" />}
+        onClick={() => onSave()}
+      >
+        Save
       </Button>
-      </CardActions>
-    </Card>
-  );
+    </CardActions>
+  </Card>
+);
 
 StoreForm.propTypes = {
   selectedStore: PropTypes.any,

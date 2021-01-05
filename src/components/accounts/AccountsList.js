@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key,react/jsx-props-no-spreading */
 import {
-  IconButton, List, ListItem, ListItemIcon, ListItemText
+  IconButton, List, ListItem, ListItemText
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';

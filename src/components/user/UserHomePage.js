@@ -126,7 +126,7 @@ const UserHomePage = ({ firebase, authUser }) => {
     if (!newUser.years[date.year][date.month][date.day].money) {
       newUser.years[date.year][date.month][date.day].money = [];
     }
-    newUser.years[date.year][date.month][date.day].money.push(state);
+    // newUser.years[date.year][date.month][date.day].money.push(state);
 
     const color = state.account.color && state.account.color.length > 0
       ? state.account.color
@@ -138,7 +138,8 @@ const UserHomePage = ({ firebase, authUser }) => {
     const newEvent = {
       color,
       content,
-      name: state.account.type
+      name: state.account.type,
+      money: state
     };
     getEventsList(newUser, selectedDay.date).push(newEvent);
 
