@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { compose } from 'recompose';
-import moment from 'moment';
 import { FormControl, MenuItem, Select } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import withAuthorization from '../session/withAuthorization';
+import Popover from '@material-ui/core/Popover';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { compose } from 'recompose';
 import conditions from '../../constants/conditions';
-import withFirebase from '../firebase/withFirebase';
 import usersHooks from '../../hooks/usersHooks';
+import withFirebase from '../firebase/withFirebase';
+import withAuthorization from '../session/withAuthorization';
 import Content from '../_common/Content';
+
+const useStyles = makeStyles((theme) => ({
+  popover: {
+    pointerEvents: 'none',
+  },
+  paper: {
+    padding: theme.spacing(1),
+  },
+}));
 
 const a = (user, year, selectedEvent) => {
   let yearsSelect = [];
@@ -58,6 +70,26 @@ const ListEventsPage = ({ firebase, authUser }) => {
   const { isLoading, user } = usersHooks.useUser(firebase, id);
   const [year, setYear] = useState(moment().year());
   const [selectedEvent, setSelectedEvent] = useState(-1);
+
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [hoveredEvent, setHoveredEvent] = useState(null);
+
+  const handlePopoverOpen = (ev, event) => {
+    if (event?.money) {
+      setAnchorEl(ev.currentTarget);
+      setHoveredEvent(event);
+    }
+  };
+
+  const handlePopoverClose = (event) => {
+    if (event?.money) {
+      setAnchorEl(null);
+      setHoveredEvent(null);
+    }
+  };
+
+  const open = Boolean(anchorEl);
 
   let yearsSelect = [];
   let evs = {};
@@ -146,6 +178,8 @@ const ListEventsPage = ({ firebase, authUser }) => {
                         margin: 2,
                         background: event.color,
                       }}
+                      onMouseEnter={(ev) => handlePopoverOpen(ev, event)}
+                      onMouseLeave={() => handlePopoverClose(event)}
                     >
                       {event.content}
                     </Grid>
@@ -156,6 +190,32 @@ const ListEventsPage = ({ firebase, authUser }) => {
           </Grid>
         ))}
       </Grid>
+      <Popover
+        id="mouse-over-popover"
+        className={classes.popover}
+        classes={{
+          paper: classes.paper,
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+        <Typography>{hoveredEvent?.money?.store?.name}</Typography>
+        <div>{hoveredEvent?.money?.categories
+          ?.filter(c => c.value && c.value !== 0)
+          ?.map(c => (
+            <div key={c.name}>{`${c.name} $${c.value}`}</div>
+          ))}</div>
+      </Popover>
     </Content>
   );
 };
