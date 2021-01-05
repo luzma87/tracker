@@ -23,7 +23,7 @@ const StoreForm = ({
           onChange={(event) => onDataChange(event)}
         />
         <CustomTextField
-          value={selectedStore.legalName}
+          value={selectedStore.legalName || ''}
           id="legalName"
           label="Legal Name"
           onChange={(event) => onDataChange(event)}
